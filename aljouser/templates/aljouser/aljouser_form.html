@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+    .btn-grn{
+        background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+        color:white;
+        border:1px solid green;
+        box-shadow: 1px 1px 3px gray;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <section class="user-board-container">
+        <h2 style="font-weight:600; color:var(--color-green);">글 작성 / 수정</h2>
+        <p class="font-italic" style="margin-bottom:25px; color:gray;">사용자 추천 메뉴 작성 및 수정.</p>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <div class="font-weight-bold">아래 오류를 확인해주세요.</div>
+        {{ form.errors }}
+            </div>
+        {% endif %}
+
+        {% if form.is_multipart %}
+            <form enctype="multipart/form-data" action="" method="post">
+        {% else %}
+            <form action="." method="post">
+        {% endif %}
+        {% csrf_token %}
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">음료명</label>
+                <div class="col-sm-8">
+                    {{ form.foodname|add_class:"form-control"|attr:"autofocus" }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">레시피 및 게시글</label>
+                <div class="col-sm-8">
+                    {{ form.recipe|add_class:"form-control"}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">브랜드</label>
+                <div class="col-sm-8">
+                    <select name="brand" style="padding:4px 4px; width:150px;">
+                        <option value="스타벅스">스타벅스</option>
+                        <option value="이디야">이디야</option>
+                        <option value="공차">공차</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">알바생/매니아</label>
+                <div class="col-sm-8">
+                    <select name="role" style="padding:4px 4px; width:150px;">
+                        <option value="알바생">알바생</option>
+                        <option value="매니아">매니아</option>
+                    </select>
+                </div class="col-sm-8">
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">사진</label>
+                <div class="col-sm-8">
+                    {{ form.image|add_class:"form-control-file" }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2 ml-3 font-weight-bold">태그</label>
+                <div class="col-sm-8">
+                    {{ form.tags|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="게시" class="btn btn-grn" style="width:100%; margin-top:10px;"/>
+                </div>
+            </div>
+
+            </form>
+    </section>
+{% endblock %}

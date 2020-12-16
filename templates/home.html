@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Aljo : 알바생이 추천하는 조합</title>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+      <style>
+        .main-header{
+            background-image: url(/static/img/header3.jpg),url(/static/img/header1.jpg);
+            background-repeat: no-repeat, no-repeat;
+            background-position:left,right;
+            background-size: 50% 100%, 50% 100%;
+         }
+
+         .intro-font{
+            font-weight:800;
+            font-size:50px;
+         }
+
+         .typed-font{
+            font-weight:700;
+            font-size:45px;
+         }
+
+        .content {
+          position: relative;
+        }
+
+        .content .content-overlay {
+          margin-left:5%;
+          background: rgba(0,0,0,0.7);
+          position: absolute;
+          height: 100%;
+          width: 90%;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          opacity: 0;
+          border-radius:30px;
+          -webkit-transition: all 0.4s ease-in-out 0s;
+          -moz-transition: all 0.4s ease-in-out 0s;
+          transition: all 0.4s ease-in-out 0s;
+        }
+
+        .content:hover .content-overlay{
+          opacity: 1;
+        }
+
+        .content-details {
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          top: 50%;
+          left: 50%;
+          opacity: 0;
+          border-radius:30px;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          -webkit-transition: all 0.3s ease-in-out 0s;
+          -moz-transition: all 0.3s ease-in-out 0s;
+          transition: all 0.3s ease-in-out 0s;
+        }
+
+        .content:hover .content-details{
+          top: 50%;
+          left: 50%;
+          opacity: 1;
+        }
+
+        .content-details h1{
+          color: #fff;
+          font-weight: 500;
+        }
+
+        .content-details p{
+          color: #fff;
+          font-size: 1.1rem;
+        }
+
+        .fadeIn-bottom{
+          top: 80%;
+        }
+
+        a{
+            color:#333;
+            font-weight:600;
+        }
+        a:visited{
+            color:#333;
+            font-weight:600;
+        }
+
+        @media only screen and (max-width: 768px) and (min-width: 320px) {
+            .main-header{
+                background-image: url(/static/img/header4.jpg),url(/static/img/hd6.jpg);
+                background-repeat: no-repeat, no-repeat;
+                background-position:top,bottom;
+                background-size: 100% 50%, 100% 50%;
+              }
+
+              .intro-font{
+                font-weight:800;
+                font-size:2.2rem;
+              }
+
+              .typed-font{
+                font-weight:700;
+                font-size:2rem;
+              }
+         }
+
+        /*footer 이미지 슬라이드*/
+        .img_wrap{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            overflow: hidden;
+            position: absolute;
+            left: 20%;
+            transform: translate(-50%, 30%);
+            border-radius:100%;
+        }
+
+        /* 롤링 이미지 UL */
+        .rollimgs {
+            list-style: none;
+            padding: 0;
+        }
+        .rollimgs li{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+        }
+        .rollimgs li img{
+            width: 100%;
+            height: 100%;
+            opacity:0.3;
+        }
+        .rollimgs li.currentroll{
+            left: 0;
+            transition: left .5s ease-in-out, right .5s ease-in-out;
+        }
+        .rollimgs li.prevroll{
+            left: -600px;
+            transition: left .5s ease-in-out, right .5s ease-in-out;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+        .footer {
+            background:#37383F;
+            width:100%;
+            height:250px;
+            box-shadow: 0px -1px 5px 1px #222;
+        }
+        </style>
+  </head>
+  <body>
+    <main class="pg-main">
+      <nav class="kjnavbg navbar navbar-expand-lg navbar-dark fixed-top">
+          <a class="nav-link text-white" href="{% url 'home' %}"><span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic" style="font-weight:normal;">Aljo</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'aljoadmin:index' %}" style="font-weight:normal;">베스트 조합</a></li>
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'aljouser:index' %}" style="font-weight:normal;">베스트 도전</a></li>
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'recommend:recommend_index' %}" style="font-weight:normal;">맞춤 추천</a></li>
+              </ul>
+
+              <ul class="navbar-nav ml-5 mr-5">
+                  <li class="nav-item dropdown mx-1 btn">
+                      {% if user.is_active %}
+                          <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                              <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;</a>
+                          <div class="dropdown-menu" >
+                              <a class="dropdown-item" href="{% url 'logout' %}" style="font-weight:normal;">Logout</a>
+                              <a class="dropdown-item" href="{% url 'password_change' %}" style="font-weight:normal;">Change Password</a>
+                          </div>
+                      {% else %}
+                          <a class="nav-link text-white" href="{% url 'login' %}" style="font-weight:normal;"><i class="fas fa-user"></i>&ensp;로그인/회원가입&ensp;</a></a>
+                      {% endif %}
+                  </li>
+              </ul>
+          </div>
+      </nav>
+      <header class="main-header">
+        <div class="title-text">
+          <br>
+          <h1 class="intro-font">이 세상 최고의</h1>
+          <div class="typed_wrap">
+              <h1><span class="typed typed-font"></span></h1>
+          </div>
+        </div>
+        <div class="header-text">
+          <form class="searchform" enctype="multipart/form-data" action="{% url 'search' %}" method="post"> {% csrf_token %}
+            <span style="font-size:1.5rem; color:#CCCCCC; margin:auto 0;"><i class="fas fa-search"></i></span>
+            <input style="width:85%; padding-left:20px;" type="search" placeholder="음료명 및 브랜드명" name="q">
+            <input type="submit" value="검색" class="btn-search" style="border:none; color:white;"></input>
+          </form>
+        </div>
+      </header>
+      <div class="banner">
+        <form class="form-img" enctype="multipart/form-data" action="{% url 'brand' %}" method="post"> {% csrf_token %}
+            <input type="image" name="q2" alt="스타벅스" title="스타벅스" src="/static/img/스타벅스.png">
+        </form>
+        <form class="form-img2" enctype="multipart/form-data" action="{% url 'brand2' %}" method="post"> {% csrf_token %}
+            <input type="image" name="q3" alt="이디야" title="이디야" src="/static/img/이디야.png">
+        </form>
+        <form class="form-img3" enctype="multipart/form-data" action="{% url 'brand3' %}" method="post"> {% csrf_token %}
+            <input type="image" name="q4" alt="공차" title="공차" src="/static/img/공차.png" style="background:white; border:3px solid #aa3434; border-radius:100%;">
+        </form>
+      </div>
+      <section class="module top-list">
+        <div class="list-title">
+          <h2 class="title">베스트 조합</h2>
+          <a href="{% url 'aljoadmin:index' %}" class="more">더보기</a>
+        </div>
+        <div class="list-container">
+          <div class="top-list-menu slick-responsive">
+              {% for aljo in aljoadmin_list %}
+                {% if forloop.counter0 < 9 %} <!-- 상위 9개 글 -->
+                <ul class="top-list-slider">
+                        <div class="content">
+                            <li><a href='{{ aljo.get_absolute_url }}'>
+                                <div class="content-overlay"></div>
+                                <img src="{{aljo.image_thumbnail.url}}">
+                                <div class="content-details fadeIn-bottom">
+                                    <h1 class="content-title">{{aljo}}</h1>
+                                    <p class="content-text">{{aljo.owner}}</p>
+                                </div>
+                            </a></li>
+                        </div>
+                    <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
+                </ul>
+                {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section class="module seconde-list">
+        <div class="list-title">
+          <h2 class="title">베스트 도전</h2>
+          <a href="{% url 'aljouser:index' %}" class="more">더보기</a>
+        </div>
+        <div class="list-container">
+          <div class="top-list-menu slick-responsive">
+              {% for aljo in aljouser_list %}
+                {% if forloop.counter0 < 9 %} <!-- 상위 9개 글 -->
+                <ul class="top-list-slider">
+                        <div class="content">
+                            <li><a href='{{ aljo.get_absolute_url }}'>
+                                <div class="content-overlay"></div>
+                                <img src="{{aljo.image_thumbnail.url}}">
+                                <div class="content-details fadeIn-bottom">
+                                    <h1 class="content-title">{{aljo}}</h1>
+                                    <p class="content-text">{{aljo.owner}}</p>
+                                </div>
+                            </a></li>
+                        </div>
+                    <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
+                </ul>
+                {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+      </section>
+      <footer>
+          <div class="footer">
+              <div class="img_wrap"">
+                <ul class="rollimgs">
+                    <li><img src="/static/img/logo.png" style="border-radius:100%;"></img></li>
+                    <li><img src="/static/img/가천2.jpg" style="border-radius:100%;"></img></li>
+                </ul>
+              </div>
+              <h3 style="color:#eeeeee; text-align:center; padding-top:70px;">가천대학교</h3>
+              <h4 style="color:#BCC1C4; text-align:center; font-family: 'Gamja Flower', sans-serif; margin-top:20px;">P프로젝트 김경중팀</h4>
+              <h5 style="color:#BCC1C4; text-align:center;"> 김경중, 김지영, 백상흔, 홍건호, 홍지영</h5>
+          </div>
+      </footer>
+
+    </main>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/c998a172fe.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+    <script>
+      $(".slick-responsive").slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true,
+            },
+          },
+          /*{
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            },
+          },*/
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows: false,
+            },
+          },
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ],
+      });
+    </script>
+    <script>
+        var options = {
+            strings: ['비밀의 레시피 !', '음료 꿀조합 !'],
+            typeSpeed: 80,
+            backSpeed: 100,
+            fadeOut: false,
+            smartBackspace: true,
+            cursorChar: ' _',
+            loop: true };
+
+            var typed = new Typed('.typed', options);
+    </script>
+    <script>
+        let banner = {
+            rollId: null,
+            interval: 2000,
+
+            //롤링 배너 초기화
+            rollInit: function (newinterval) {
+                if(parseInt(newinterval) > 0){
+                    this.interval = newinterval;
+                }
+                //현재 배너
+                let firstitem = document.querySelector('.rollimgs li');
+                if(firstitem){
+                    firstitem.classList.add('currentroll');
+                }
+                //다음 배너
+                let seconditem = document.querySelectorAll('.rollimgs li')[1];
+                if(seconditem){
+                    seconditem.classList.add('nextroll');
+                }
+                //이전 배너
+                document.querySelector('.rollimgs li:last-child').classList.add('prevroll');
+                this.rollId = setInterval(this.rollNext, this.interval);//롤링 인터벌 호출
+            },
+
+            //다음 배너 롤링
+            rollNext: function () {
+                if(document.querySelector('.prevroll')){
+                    document.querySelector('.prevroll').classList.remove('prevroll');
+                }
+                if(document.querySelector('.currentroll')){
+                    document.querySelector('.currentroll').classList.add('prevroll');
+                    document.querySelector('.currentroll').classList.remove('currentroll');
+                }
+                if(document.querySelector('.nextroll')){
+                    document.querySelector('.nextroll').classList.add('currentroll');
+                    document.querySelector('.nextroll').classList.remove('nextroll');
+                }
+            //다음 이미지 있으면 다음 롤링 이미지로 선택, 없으면 첫번째 이미지를 롤링 이미지로 지정
+                if(document.querySelector('.currentroll').nextElementSibling){
+                    document.querySelector('.currentroll').nextElementSibling.classList.add('nextroll');
+                }else{
+                    document.querySelector('.rollimgs li').classList.add('nextroll');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function(){
+            banner.rollInit(4000); // 배너 롤링
+        });
+    </script>
+
+  </body>
+</html>

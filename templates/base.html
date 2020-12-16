@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    {% block extra-style %}{% endblock %}
+</head>
+
+<body>
+    <nav class="kjnavbg navbar navbar-expand-lg navbar-dark fixed-top">
+          <a class="nav-link text-white" href="{% url 'home' %}"><span class="navbar-brand font-weight-bold font-italic">Aljo</span></a>
+            <div style="margin-right:30px; width:50%;">
+                <form style="background:white; border-radius:80px;" enctype="multipart/form-data" action="{% url 'search' %}" method="post"> {% csrf_token %}
+                    <input name="q" style="height:40px; width:80%; padding-left:20px;">
+                    <input type="submit" value="🔍" class="btn-search" style="border:none; color:white; background:#1bc75f; height:40px;"></input>
+                </form>
+            </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'aljoadmin:index' %}">베스트 조합</a></li>
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'aljouser:index' %}">베스트 도전</a></li>
+                  <li class="nav-item mx-1 btn">
+                      <a class="nav-link text-white" href="{% url 'recommend:recommend_index' %}">맞춤 추천</a></li>
+              </ul>
+
+              <!-- 이하 코드 추가 -->
+              <ul class="navbar-nav ml-1 mr-1">
+                  <li class="nav-item dropdown mx-1 btn">
+                      {% if user.is_active %}
+                          <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                              <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;</a>
+                          <div class="dropdown-menu" >
+                              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                              <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+                          </div>
+                      {% else %}
+                          <a class="nav-link text-white" href="{% url 'login' %}"><i class="fas fa-user"></i>&ensp;로그인/회원가입&ensp;</a></a>
+                          <!--<a class="dropdown-item" href="{% url 'register' %}">Register</a>-->
+                      {% endif %}
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+
+<div>
+    {% block content %}{% endblock %}
+</div>
+
+{% block footer %}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/c998a172fe.js"></script>
+
+{% block extra-script %}{% endblock %}
+
+</body>
+</html>
+

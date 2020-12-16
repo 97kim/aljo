@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+    img{
+        border-radius:30px;
+        box-shadow: 0px 2px 7px 0.5px rgba(0, 0, 0, 0.7);
+    }
+
+    .font{
+        font-size:1.1rem;
+    }
+
+    .like{
+        float:right;
+    }
+    a{
+        color:#333;
+    }
+    a:visited{
+        color:#333;
+    }
+
+    .listview{
+        margin:10px 3% 7% 0; float:left; width:30%;
+    }
+
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+        .listview{
+            margin:10px 3% 7% 0;
+            clear:left;
+            width:100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="user-board-container">
+    <h1 style="font-weight:600; color: var(--color-green);"># {{ tagname }}</h1>
+    <br>
+
+    {% for aljouser in object_list %}
+        <div style="margin:0 3% 3% 0; float:left; ">
+            <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br><br>
+            <h3 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h3>
+            <span class="font">{{aljouser.owner}}</span>
+
+            {% if aljo.count_like_users == 0 %}
+                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser.count_like_users }}개</span><br>
+            {% else %}
+                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser.count_like_users }}개</span><br>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}
+

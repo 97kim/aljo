@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aljo : 알바생이 추천하는 조합</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  </head>
+  <body>
+    <main class="pg-admin-board">
+      <header class="nav-bar">
+        <a class="nav-bar-logo" href="{% url 'home' %}">
+          <img src="{% static 'img/aljo_logo.jpg' %}" alt="로고 이미지" />
+        </a>
+        <div class="nav-search-bar">
+          <i class="fas fa-search"></i>
+          <label class="header-search-wrap">
+            <form enctype="multipart/form-data" action="{% url 'search' %}" method="post"> {% csrf_token %}
+              <span><i></i></span>
+              <input type="search" class="header-search-input" placeholder="음료명 및 브랜드명" name="q">
+            </form>
+          </label>
+        </div>
+        <div class="nav-bar-menu">
+          <ul>
+            <li><a href="{% url 'aljoadmin:index' %}">관리자 게시판</a></li>
+            <li><a href="{% url 'aljouser:index' %}">사용자 게시판</a></li>
+            <li><a href="#">맞춤 추천</a></li>
+          </ul>
+          <div class="menu-trigger">
+            <input type="checkbox" id="menu-trigger" />
+            <label for="menu-trigger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+    {% if not menus %}
+
+        <div>
+            <span style="font-size:30px; font-weight:bold;">{{q}}</span><sapn style="color:gray; font-size:25px;"> 에 대한 검색결과가 없습니다.</sapn>
+        </div><br>
+
+    {% else %}
+
+        <div>
+            <span style="font-size:30px; font-weight:bold;">{{q}}</span><sapn style="color:gray; font-size:25px;"> 검색결과</sapn>
+        </div><br>
+
+        {% for aljo in menus.all %}
+            <div style="margin:0 3% 3% 0; float:left; ">
+                <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
+                <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                <h6>{{aljo.owner}}</h6>
+
+                {% with aljo_like_users=aljo.like_users.all %}
+                    {% if aljo_like_users.count == 0 %}
+                        <span><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
+                    {% else %}
+                        <span><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
+                    {% endif %}
+                {% endwith %}
+
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+  </body>
+</html>
+

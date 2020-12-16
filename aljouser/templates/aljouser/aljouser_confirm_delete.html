@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block content %}
+<section class="user-board-container">
+    <h1 style="font-weight:600;">게시글 삭제</h1>
+    <br>
+
+    <form action="." method="post">{% csrf_token %}
+        <p>"{{ object }}" 게시글을 삭제하시겠습니까 ?</p>
+        <input type="submit" value="확인" class="btn btn-danger btn-sm" />
+        <a href="{% url 'aljouser:detail' object.id %}"><input type="button" value="취소" class="btn btn-danger btn-sm" /></a>
+    </form>
+</section>
+
+{% endblock %}
+

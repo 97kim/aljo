@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+    img{
+        border-radius:30px;
+        box-shadow: 0px 2px 7px 0.5px rgba(0, 0, 0, 0.7);
+        margin-bottom:10px;
+    }
+    .font{
+        font-size:1.1rem;
+    }
+
+    .like{
+        float:right;
+    }
+    a{
+        color:#333;
+    }
+    a:visited{
+        color:#333;
+    }
+    .board{
+        color:var(--color-green);
+        font-size:22px;
+        font-weight:bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+      <section class="user-board-container">
+            {% if starbucks and starbucksuser %}
+                <div>
+                    <span style="font-size:35px; font-weight:bold;">스타벅스</span><span style="color:gray; font-size:25px;">&nbsp; 브랜드</span>
+                </div><br>
+                <span class="board"> 베스트 조합</span><br>
+
+                {% for aljo in starbucks.all %}
+                    <div style="margin:10px 3% 7% 0; float:left; ">
+                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
+                        <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                        <span class="font">{{aljo.owner}}</span>
+
+                        {% with aljo_like_users=aljo.like_users.all %}
+                            {% if aljo_like_users.count == 0 %}
+                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
+                            {% else %}
+                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+                {% endfor %}
+
+
+                <div style="clear:left;">
+                    <br><hr><br><span class="board"> 베스트 도전</span><br>
+                </div>
+
+                {% for aljouser in starbucksuser.all %}
+                    <div style="margin:10px 3% 7% 0; float:left; ">
+                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
+                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                       <span class="font">{{aljouser.owner}}</span>
+
+                        {% with aljouser_like_users=aljouser.like_users.all %}
+                            {% if aljouser_like_users.count == 0 %}
+                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
+                            {% else %}
+                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+                {% endfor %}
+
+            {% elif starbucks and not starbucksuser %}
+
+                <div><br><br>
+                    <span style="font-size:30px; font-weight:bold;">스타벅스</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
+                </div><br>
+                <span class="board"> 관리자 게시판</span><br>
+
+                {% for aljo in starbucks.all %}
+                    <div style="margin:10px 3% 3% 0; float:left; ">
+                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
+                        <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                        <span class="font">{{aljo.owner}}</span>
+
+                        {% with aljo_like_users=aljo.like_users.all %}
+                            {% if aljo_like_users.count == 0 %}
+                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
+                            {% else %}
+                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+                {% endfor %}
+
+            {% elif starbucksuser and not starbucks %}
+
+                <div>
+                    <span style="font-size:30px; font-weight:bold;">스타벅스</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
+                </div><br>
+                <span class="board"> 사용자 게시판</span><br>
+
+                {% for aljouser in starbucksuser.all %}
+                    <div style="margin:10px 3% 3% 0; float:left; ">
+                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
+                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                        <span class="font">{{aljouser.owner}}</span>
+
+                        {% with aljouser_like_users=aljouser.like_users.all %}
+                            {% if aljouser_like_users.count == 0 %}
+                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
+                            {% else %}
+                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+      </section>
+{% endblock %}

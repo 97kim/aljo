@@ -1,0 +1,409 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+        .rdo-grp label {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            padding: 6px 8px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .rdo-grp label:hover {
+            background: rgba(8, 126, 67, 0.06);
+        }
+
+        .rdo-grp label:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .rdo-grp label span {
+            vertical-align: middle;
+        }
+        .rdo-grp label span:first-child {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            background: #e8eaed;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .rdo-grp input {
+            display: none;
+        }
+
+        .rdo-grp input:checked+label span:first-child {
+            background: #04863e;
+        }
+
+        .input {
+            text-align:center;
+            background: #04863e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px gray;
+            position: relative;
+            height: 50px;
+            font-size: 1.0em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        .input:hover {
+            background: #f8f8ff;
+            color: #04863e;
+            text-align: right;
+        }
+
+        .input:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 50%;
+            background: #f8f8ff;
+            transition: 400ms ease all;
+        }
+
+        .input:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .input:hover:before,
+        button:hover:after {
+            width: 50%;
+            transition: 800ms ease all;
+        }
+
+        form div img {
+            width: 250px;
+            height: 250px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+        <section class="user-board-container">
+            <div class="board-title">
+                <h2 class="title" style="text-align: center; font-weight:600;">개인 맞춤 메뉴 추천</h2><br>
+                <div style="text-align:center; font-size:26px; font-weight:600; color:#5ba16b">
+                    "{{ user }}"<span style=" color:black;">님 안녕하세요.</span>
+                </div><br>
+                <h5 style="text-align: center; margin-bottom:20px; color:black;">먹어본 메뉴에 평점을 입력하면<br>취향에 맞는 메뉴를 추천해드려요!<br>안 먹어본 메뉴는 PASS!</h5>
+            </div>
+            <div style="width:100%;">
+                <form action="{% url 'recommend:recommend_result'%}" method="POST" style="margin:0 auto;">
+                     {% csrf_token %}
+                    <div class="rdo-grp" style="text-align: center;">
+                        <img src="{% static 'img/타로 밀크티.png'%}" alt="메뉴 이미지" /><br>공차 타로 밀크티<br><br>
+                            <input type="radio" name="q1" value="1" id="c1" /><label
+                                for="c1"><span></span><span>1</span></label>
+                            <input type="radio" name="q1" value="2" id="c2" /><label
+                                for="c2"><span></span><span>2</span></label>
+                            <input type="radio" name="q1" value="3" id="c3" /><label
+                                for="c3"><span></span><span>3</span></label>
+                            <input type="radio" name="q1" value="4" id="c4" /><label
+                                for="c4"><span></span><span>4</span></label>
+                            <input type="radio" name="q1" value="5" id="c5" /><label
+                                for="c5"><span></span><span>5</span></label>
+                            <br><br>
+                        <img src="{% static 'img/블랙 밀크티.png'%}" alt="메뉴 이미지" /><br>공차 블랙 밀크티<br><br>
+                        <input type="radio" name="q2" value="1" id="c6" /><label
+                            for="c6"><span></span><span>1</span></label>
+                        <input type="radio" name="q2" value="2" id="c7" /><label
+                            for="c7"><span></span><span>2</span></label>
+                        <input type="radio" name="q2" value="3" id="c8" /><label
+                            for="c8"><span></span><span>3</span></label>
+                        <input type="radio" name="q2" value="4" id="c9" /><label
+                            for="c9"><span></span><span>4</span></label>
+                        <input type="radio" name="q2" value="5" id="c10" /><label
+                            for="c10"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/초콜렛 밀크티.png'%}" alt="메뉴 이미지" /><br>공차 초콜렛 밀크티<br><br>
+                        <input type="radio" name="q3" value="1" id="c11" /><label
+                            for="c11"><span></span><span>1</span></label>
+                        <input type="radio" name="q3" value="2" id="c12" /><label
+                            for="c12"><span></span><span>2</span></label>
+                        <input type="radio" name="q3" value="3" id="c13" /><label
+                            for="c13"><span></span><span>3</span></label>
+                        <input type="radio" name="q3" value="4" id="c14" /><label
+                            for="c14"><span></span><span>4</span></label>
+                        <input type="radio" name="q3" value="5" id="c15" /><label
+                            for="c15"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/우롱 밀크티.png'%}" alt="메뉴 이미지" /><br>공차 우롱 밀크티<br><br>
+                        <input type="radio" name="q4" value="1" id="c16" /><label
+                            for="c16"><span></span><span>1</span></label>
+                        <input type="radio" name="q4" value="2" id="c17" /><label
+                            for="c17"><span></span><span>2</span></label>
+                        <input type="radio" name="q4" value="3" id="c18" /><label
+                            for="c18"><span></span><span>3</span></label>
+                        <input type="radio" name="q4" value="4" id="c19" /><label
+                            for="c19"><span></span><span>4</span></label>
+                        <input type="radio" name="q4" value="5" id="c20" /><label
+                            for="c20"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/망고 요구르트.png'%}" alt="메뉴 이미지" /><br>공차 망고 요구르트<br><br>
+                        <input type="radio" name="q5" value="1" id="c21" /><label
+                            for="c21"><span></span><span>1</span></label>
+                        <input type="radio" name="q5" value="2" id="c22" /><label
+                            for="c22"><span></span><span>2</span></label>
+                        <input type="radio" name="q5" value="3" id="c23" /><label
+                            for="c23"><span></span><span>3</span></label>
+                        <input type="radio" name="q5" value="4" id="c24" /><label
+                            for="c24"><span></span><span>4</span></label>
+                        <input type="radio" name="q5" value="5" id="c25" /><label
+                            for="c25"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/망고 스무디.png'%}" alt="메뉴 이미지" /><br>공차 망고 스무디<br><br>
+                        <input type="radio" name="q6" value="1" id="c26" /><label
+                            for="c26"><span></span><span>1</span></label>
+                        <input type="radio" name="q6" value="2" id="c27" /><label
+                            for="c27"><span></span><span>2</span></label>
+                        <input type="radio" name="q6" value="3" id="c28" /><label
+                            for="c28"><span></span><span>3</span></label>
+                        <input type="radio" name="q6" value="4" id="c29" /><label
+                            for="c29"><span></span><span>4</span></label>
+                        <input type="radio" name="q6" value="5" id="c30" /><label
+                            for="c30"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/딸기 쉐이크.png'%}" alt="메뉴 이미지" /><br>이디야 딸기 쉐이크<br><br>
+                        <input type="radio" name="q7" value="1" id="c31" /><label
+                            for="c31"><span></span><span>1</span></label>
+                        <input type="radio" name="q7" value="2" id="c32" /><label
+                            for="c32"><span></span><span>2</span></label>
+                        <input type="radio" name="q7" value="3" id="c33" /><label
+                            for="c33"><span></span><span>3</span></label>
+                        <input type="radio" name="q7" value="4" id="c34" /><label
+                            for="c34"><span></span><span>4</span></label>
+                        <input type="radio" name="q7" value="5" id="c35" /><label
+                            for="c35"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/토피넛 라떼.png'%}" alt="메뉴 이미지" /><br>이디야 토피넛 라떼<br><br>
+                        <input type="radio" name="q8" value="1" id="c36" /><label
+                            for="c36"><span></span><span>1</span></label>
+                        <input type="radio" name="q8" value="2" id="c37" /><label
+                            for="c37"><span></span><span>2</span></label>
+                        <input type="radio" name="q8" value="3" id="c38" /><label
+                            for="c38"><span></span><span>3</span></label>
+                        <input type="radio" name="q8" value="4" id="c39" /><label
+                            for="c39"><span></span><span>4</span></label>
+                        <input type="radio" name="q8" value="5" id="c40" /><label
+                            for="c40"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/녹차 플랫치노.png'%}" alt="메뉴 이미지" /><br>이디야 녹차 플랫치노<br><br>
+                        <input type="radio" name="q9" value="1" id="c41" /><label
+                            for="c41"><span></span><span>1</span></label>
+                        <input type="radio" name="q9" value="2" id="c42" /><label
+                            for="c42"><span></span><span>2</span></label>
+                        <input type="radio" name="q9" value="3" id="c43" /><label
+                            for="c43"><span></span><span>3</span></label>
+                        <input type="radio" name="q9" value="4" id="c44" /><label
+                            for="c44"><span></span><span>4</span></label>
+                        <input type="radio" name="q9" value="5" id="c45" /><label
+                            for="c45"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/초콜릿칩 플랫치노.png'%}" alt="메뉴 이미지" /><br>이디야 초콜릿칩 플랫치노<br><br>
+                        <input type="radio" name="q10" value="1" id="c46" /><label
+                            for="c46"><span></span><span>1</span></label>
+                        <input type="radio" name="q10" value="2" id="c47" /><label
+                            for="c47"><span></span><span>2</span></label>
+                        <input type="radio" name="q10" value="3" id="c48" /><label
+                            for="c48"><span></span><span>3</span></label>
+                        <input type="radio" name="q10" value="4" id="c49" /><label
+                            for="c49"><span></span><span>4</span></label>
+                        <input type="radio" name="q10" value="5" id="c50" /><label
+                            for="c50"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/오리진 쉐이크.png'%}" alt="메뉴 이미지" /><br>이디야 오리진 쉐이크<br><br>
+                        <input type="radio" name="q11" value="1" id="c51" /><label
+                            for="c51"><span></span><span>1</span></label>
+                        <input type="radio" name="q11" value="2" id="c52" /><label
+                            for="c52"><span></span><span>2</span></label>
+                        <input type="radio" name="q11" value="3" id="c53" /><label
+                            for="c53"><span></span><span>3</span></label>
+                        <input type="radio" name="q11" value="4" id="c54" /><label
+                            for="c54"><span></span><span>4</span></label>
+                        <input type="radio" name="q11" value="5" id="c55" /><label
+                            for="c55"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/녹차 라떼.png'%}" alt="메뉴 이미지" /><br>이디야 녹차라떼<br><br>
+                        <input type="radio" name="q12" value="1" id="c56" /><label
+                            for="c56"><span></span><span>1</span></label>
+                        <input type="radio" name="q12" value="2" id="c57" /><label
+                            for="c57"><span></span><span>2</span></label>
+                        <input type="radio" name="q12" value="3" id="c58" /><label
+                            for="c58"><span></span><span>3</span></label>
+                        <input type="radio" name="q12" value="4" id="c59" /><label
+                            for="c59"><span></span><span>4</span></label>
+                        <input type="radio" name="q12" value="5" id="c60" /><label
+                            for="c60"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/아이스티.png'%}" alt="메뉴 이미지" /><br>이디야 아이스티<br><br>
+                        <input type="radio" name="q13" value="1" id="c61" /><label
+                            for="c61"><span></span><span>1</span></label>
+                        <input type="radio" name="q13" value="2" id="c62" /><label
+                            for="c62"><span></span><span>2</span></label>
+                        <input type="radio" name="q13" value="3" id="c63" /><label
+                            for="c63"><span></span><span>3</span></label>
+                        <input type="radio" name="q13" value="4" id="c64" /><label
+                            for="c64"><span></span><span>4</span></label>
+                        <input type="radio" name="q13" value="5" id="c65" /><label
+                            for="c65"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/초콜릿크림칩 프라푸치노.png'%}" alt="메뉴 이미지" /><br>스타벅스 초콜릿크림칩 프라푸치노<br><br>
+                        <input type="radio" name="q14" value="1" id="c66" /><label
+                            for="c66"><span></span><span>1</span></label>
+                        <input type="radio" name="q14" value="2" id="c67" /><label
+                            for="c67"><span></span><span>2</span></label>
+                        <input type="radio" name="q14" value="3" id="c68" /><label
+                            for="c68"><span></span><span>3</span></label>
+                        <input type="radio" name="q14" value="4" id="c69" /><label
+                            for="c69"><span></span><span>4</span></label>
+                        <input type="radio" name="q14" value="5" id="c70" /><label
+                            for="c70"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/바닐라크림 프라푸치노.png'%}" alt="메뉴 이미지" /><br>스타벅스 바닐라크림 프라푸치노<br><br>
+                        <input type="radio" name="q15" value="1" id="c71" /><label
+                            for="c71"><span></span><span>1</span></label>
+                        <input type="radio" name="q15" value="2" id="c72" /><label
+                            for="c72"><span></span><span>2</span></label>
+                        <input type="radio" name="q15" value="3" id="c73" /><label
+                            for="c73"><span></span><span>3</span></label>
+                        <input type="radio" name="q15" value="4" id="c74" /><label
+                            for="c74"><span></span><span>4</span></label>
+                        <input type="radio" name="q15" value="5" id="c75" /><label
+                            for="c75"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/말차크림 프라푸치노.png'%}" alt="메뉴 이미지" /><br>스타벅스 말차크림 프라푸치노<br><br>
+                        <input type="radio" name="q16" value="1" id="c76" /><label
+                            for="c76"><span></span><span>1</span></label>
+                        <input type="radio" name="q16" value="2" id="c77" /><label
+                            for="c77"><span></span><span>2</span></label>
+                        <input type="radio" name="q16" value="3" id="c78" /><label
+                            for="c78"><span></span><span>3</span></label>
+                        <input type="radio" name="q16" value="4" id="c79" /><label
+                            for="c79"><span></span><span>4</span></label>
+                        <input type="radio" name="q16" value="5" id="c80" /><label
+                            for="c80"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/화이트딸기크림 프라푸치노.png'%}" alt="메뉴 이미지" /><br>화이트딸기크림 프라푸치노<br><br>
+                        <input type="radio" name="q17" value="1" id="c81" /><label
+                            for="c81"><span></span><span>1</span></label>
+                        <input type="radio" name="q17" value="2" id="c82" /><label
+                            for="c82"><span></span><span>2</span></label>
+                        <input type="radio" name="q17" value="3" id="c83" /><label
+                            for="c83"><span></span><span>3</span></label>
+                        <input type="radio" name="q17" value="4" id="c84" /><label
+                            for="c84"><span></span><span>4</span></label>
+                        <input type="radio" name="q17" value="5" id="c85" /><label
+                            for="c85"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/카라멜 프라푸치노.png'%}" alt="메뉴 이미지" /><br>스타벅스 카라멜 프라푸치노<br><br>
+                        <input type="radio" name="q18" value="1" id="c86" /><label
+                            for="c86"><span></span><span>1</span></label>
+                        <input type="radio" name="q18" value="2" id="c87" /><label
+                            for="c87"><span></span><span>2</span></label>
+                        <input type="radio" name="q18" value="3" id="c88" /><label
+                            for="c88"><span></span><span>3</span></label>
+                        <input type="radio" name="q18" value="4" id="c89" /><label
+                            for="c89"><span></span><span>4</span></label>
+                        <input type="radio" name="q18" value="5" id="c90" /><label
+                            for="c90"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/자바칩 프라푸치노.png'%}" alt="메뉴 이미지" /><br>스타벅스 자바칩 프라푸치노<br><br>
+                        <input type="radio" name="q19" value="1" id="c91" /><label
+                            for="c91"><span></span><span>1</span></label>
+                        <input type="radio" name="q19" value="2" id="c92" /><label
+                            for="c92"><span></span><span>2</span></label>
+                        <input type="radio" name="q19" value="3" id="c93" /><label
+                            for="c93"><span></span><span>3</span></label>
+                        <input type="radio" name="q19" value="4" id="c94" /><label
+                            for="c94"><span></span><span>4</span></label>
+                        <input type="radio" name="q19" value="5" id="c95" /><label
+                            for="c95"><span></span><span>5</span></label>
+                        <br><br>
+
+                        <img src="{% static 'img/아메리카노.png'%}" alt="메뉴 이미지" /><br>스타벅스 아메리카노<br><br>
+                        <input type="radio" name="q20" value="1" id="c96" /><label
+                            for="c96"><span></span><span>1</span></label>
+                        <input type="radio" name="q20" value="2" id="c97" /><label
+                            for="c97"><span></span><span>2</span></label>
+                        <input type="radio" name="q20" value="3" id="c98" /><label
+                            for="c98"><span></span><span>3</span></label>
+                        <input type="radio" name="q20" value="4" id="c99" /><label
+                            for="c99"><span></span><span>4</span></label>
+                        <input type="radio" name="q20" value="5" id="c100" /><label
+                            for="c100"><span></span><span>5</span></label>
+                        <br><br>
+                    </div>
+                    <br><br><br>
+                    <div style="text-align:center;">
+                        <input class="input" type="submit" class="button" value="결과 보러가기">
+                        <br><br><br><br><br><br>
+                    </div>
+                </form>
+            </div>
+        </section>
+{% endblock %}
+
+{% block extra-script %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("input[type=radio]").click(function() {
+            // Get the storedValue
+            var previousValue = $(this).data('storedValue');
+            // if previousValue = true then
+            //     Step 1: toggle radio button check mark.
+            //     Step 2: save data-StoredValue as false to indicate radio button is unchecked.
+            if (previousValue) {
+              $(this).prop('checked', !previousValue);
+              $(this).data('storedValue', !previousValue);
+            }
+            // If previousValue is other than true
+            //    Step 1: save data-StoredValue as true to for currently checked radio button.
+            //    Step 2: save data-StoredValue as false for all non-checked radio buttons.
+            else{
+              $(this).data('storedValue', true);
+              $("input[type=radio]:not(:checked)").data("storedValue", false);
+            }
+        });
+    });
+</script>
+{% endblock %}

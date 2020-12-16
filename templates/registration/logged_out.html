@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#cccccc;
+	font-family: 'NanumSquare', sans-serif;
+}
+
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+.login-wrap{
+	width:100%;
+	margin: 70px auto 0;
+	max-width:100%;
+	min-height:692px;
+	position:relative;
+	background:url(/static/img/header2.jpg) no-repeat center;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	background:rgba(30,30,30,0.9);
+}
+
+.login-wrap .login-html h2{
+    text-align:center;
+    color:white;
+}
+
+.login-wrap .login-html div{
+    text-align:center;
+    color:#cccccc;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="login-wrap">
+	<div class="login-html">
+		<div>
+            <h2>로그아웃</h2>
+            <br><br>
+            <div>
+                <h6>&ensp;정상적으로 로그아웃 되었습니다.&ensp;</h6><br>
+                <h6>&ensp;오늘도 이용해주셔서 감사합니다.&ensp;</h6>
+            </div><br><br>
+            <p class="font-italic" style="color:#90C6A2; font-weight:bold; font-size:17px; text-decoration: underline"><a href="{% url 'login' %}">다시 로그인하기</a></p>
+        </div>
+	</div>
+</div>
+{% endblock %}
+

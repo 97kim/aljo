@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+    textarea:focus{
+        outline:0.1px solid #CCCCCC;
+    }
+
+    .btn-grn{
+        background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+        color:white;
+        border:1px solid green;
+        box-shadow: 1px 1px 3px gray;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pg-user-board">
+    <section class="detail-wrap">
+        <section class="detail-container">
+          <div class="detail-header">
+            <img class="header-img" src="{{object.image.url}}" alt="게시글 메뉴 사진"  />
+            <div class="title">
+              <div class="left">
+                <h2 style="font-weight:600;">{{ object.foodname }}</h2>
+                <div class="date-and-views-likes">
+                  <sapn class="date">{{ object.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;</sapn>
+                  <span class="likes"><i class="far fa-thumbs-up"></i> {{ object.count_like_users}}</span>
+                </div>
+              </div>
+              <div class="right">
+                <img src="{% static 'img/emoji.jpg' %}" alt="프로필 이미지" width="100%" />
+                <div class="writer-info">
+                  <span class="writer"><strong>{{object.owner}}</strong></span>
+                  <span class="role">{{ object.brand }} {{ object.role }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-contents">
+              <p class="contents" id="text" style="word-break:break-all;">
+                  {{object.recipe|linebreaks}}
+              </p>
+              <div class="hashtags">
+                  <b>TAGS &nbsp;</b><i class="fas fa-tag"></i>
+                  {% load taggit_templatetags2_tags %}
+                  {% get_tags_for_object object as "tags" %}
+                  {% for tag in tags %}
+                    <a href="{% url 'aljouser:tagged_object_list' tag.name %}">&nbsp;#{{tag.name}}</a>
+                  {% endfor %}
+              </div>
+              <div class="contents-footer">
+                  <div class="likes">
+                      <br>
+                      {% if request.user in object.like_users.all %}
+                        <a href="{% url 'aljouser:like' object.id %}">
+                            <i class="fas fa-heart fa-lg animated heartBeat" style="color: red; font-size:25px;"></i>
+                        </a>
+                      {% else %}
+                        <a href="{% url 'aljouser:like' object.id %}">
+                            <i class="far fa-heart fa-lg animated delay-1s" style="color: gray; font-size:25px;"></i>
+                        </a>
+                      {% endif %}
+                      <span>&nbsp;{{ object.count_like_users}}명이 좋아합니다.</span><br>
+                      <a class="option" href="{% url 'aljouser:delete' object.id %}">삭제</a>
+                      <a class="option" href="{% url 'aljouser:update' object.id %}">수정</a>
+                      <a class="option" href="{% url 'aljouser:index' %}">목록</a>
+                  </div>
+              </div>
+          </div>
+        </section>
+        <section class="detail-comment">
+            <form action="." method="post"> {% csrf_token %}
+              <strong class="title">댓글</strong>
+              <div class="comment">
+                <!--{{form.as_p}} 아래 코드 p textarea를 단축한 코드-->
+                   <p> <textarea class="textarea" style="height:100px; font-size:" name="content" cols="40" rows="10" placeholder="Leave a Comment" required=""></textarea></p>
+                   <!--- <input type="submit" name="comment" value="Post as {{ user }}" class="btn btn-sm btn-info" style="float:right;"> -->
+              </div>
+              <div class="btn-area">
+                <input type="submit" name="comment" value="등록 ({{ user }})" class="btn btn-sm btn-grn"></input>
+              </div>
+            </form>
+                <ul class="comment-list">
+                  {% for comment in object.commentuser_set.all %}
+                    <li>
+                        <img src="{% static 'img/emoji.jpg' %}" alt="댓글프로필이미지" width="100%" />
+                        <div class="comment-item" style="word-break:break-all;">
+                            <span class="writer"><strong>{{ comment.writer }}</strong></span>
+                            <span class="date"> &nbsp;&nbsp;{{ comment.modify_dt|timesince }} ago</span>
+                            <body>{{ comment.content|linebreaks }}</body>
+                        </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+        </section>
+    </section>
+</main>
+<div class="app-call">
+    {% if object.brand == "스타벅스" %}
+    <a href="#" id="btnRun">앱 실행(Apple)</a> <span style="color:white;">&nbsp; | &nbsp;</span> <a href="#" id="btnRun_and">앱 실행(Android)</a>
+    {% elif object.brand == "이디야" %}
+    <a href="#" id="btnRun2">앱 실행(Apple)</a> <span style="color:white;">&nbsp; | &nbsp;</span> <a href="#" id="btnRun2_and">앱 실행(Android)</a>
+    {% elif object.brand == "공차" %}
+    <a href="#" id="btnRun3">앱 실행(Apple)</a> <span style="color:white;">&nbsp; | &nbsp;</span> <a href="#" id="btnRun3_and">앱 실행(Android)</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra-script %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/static/js/Appruninstall.js"></script>
+<script src="/static/js/Osinfo.js"></script>
+<script type="text/javascript">
+    $(window).load(function () {});
+    $(function () {
+        $("#btnRun").click(function () {
+            runStarbucks_ios();
+        });
+        $("#btnRun2").click(function () {
+            runEdiya_ios();
+        });
+        $("#btnRun3").click(function () {
+            runGongcha_ios();
+        });
+        $("#btnRun_and").click(function () {
+            runStarbucks_and();
+        });
+        $("#btnRun2_and").click(function () {
+            runEdiya_and();
+        });
+        $("#btnRun3_and").click(function () {
+            runGongcha_and();
+        });
+    });
+</script>
+{% endblock %}

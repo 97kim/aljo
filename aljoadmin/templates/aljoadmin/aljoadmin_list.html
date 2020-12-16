@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+<style>
+    img{
+        border-radius:30px;
+        box-shadow: 0px 2px 7px 0.5px rgba(0, 0, 0, 0.7);
+    }
+
+    .font{
+        font-size:1.1rem;
+    }
+
+    .like{
+        float:right;
+    }
+    a{
+        color:#333;
+    }
+    a:visited{
+        color:#333;
+    }
+
+    .listview{
+        margin:10px 3% 7% 0; float:left; width:30%;
+    }
+
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+        .listview{
+            margin:10px 3% 7% 0;
+            clear:left;
+            width:100%;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+      <section class="user-board-container">
+          <div class="board-title">
+              <h2 style="font-weight:600;">베스트 조합</h2>
+          </div>
+          <div>
+              <h4 style="margin-bottom:10px; font-weight:600;">정렬 방식</h4>
+              <a href="{% url 'aljoadmin:index' %}" style="color:gray;">최신순</a> |
+              <a href="{% url 'aljoadmin:likesort' %}" style="color:gray;">좋아요순</a>
+              <br><br>
+              <a href="{% url 'aljoadmin:starbucks' %}"><img src="/static/img/스타벅스.png" alt="스타벅스" width="50px" height="50px"></a>&nbsp;&nbsp;&nbsp;
+              <a href="{% url 'aljoadmin:ediya' %}"><img src="/static/img/이디야.png" alt="이디야" width="50px" height="50px"></a>&nbsp;&nbsp;&nbsp;
+              <a href="{% url 'aljoadmin:gongcha' %}"><img src="/static/img/공차.png" alt="공차" width="50px" height="50px" style="border:2px solid #aa3434; border-radius:100%;"></a><hr>
+          </div>
+
+          <div style="width:100%;">
+              {% for aljo in object_list %}
+              <div class ="listview">
+                  <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                  <h3 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h3>
+                  <span class="font">{{aljo.owner}}</span>
+
+                  {% if aljo.count_like_users == 0 %}
+                  <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo.count_like_users }}개</span><br>
+                  {% else %}
+                  <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo.count_like_users }}개</span><br>
+                  {% endif %}
+              </div>
+              {% endfor %}
+          </div>
+
+      </section>
+{% endblock %}

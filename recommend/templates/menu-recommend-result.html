@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Aljo : 알바생이 추천하는 조합{% endblock %}
+
+{% block extra-style %}
+    <link rel="stylesheet" href="{% static 'css/menu-recommend-result.css'%}" />
+{% endblock %}
+
+{% block content %}
+        <section class="user-board-container">
+            <div class="board-title">
+                <br>
+                <h2 class="title" style="text-align: center;">이 메뉴 한번 드셔보세요!</h2><br>
+            </div>
+            <div class="loader-back"></div><br>
+            <div class="result" style="text-align: center;">
+                <img src="{{pic}}" style="width:250px; height:250px;"/><br><h2>{{localtest}}</h2><br>
+                {% if aljorecommend %}
+                    {% for aljo in aljorecommend %}
+                        <br><a href='{{ aljo.get_absolute_url }}'>{{localtest}} 더 맛있게 먹을 수 있는 꿀조합 보러가기!</a>
+                    {% endfor %}
+                {% else %}
+                        <br><a href="{% url 'aljoadmin:index' %}">{{localtest}} 더 맛있게 먹을 수 있는 꿀조합 보러가기!</a>
+                {% endif %}
+
+            </div>
+            <div class="loader"></div>
+        </section>
+{% endblock %}
+
+{% block extra-script %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+        $(window).load(function () {
+            $('.loader').delay('3000').fadeOut();
+            $('.loader-back').delay('3000').fadeOut();
+        })
+</script>
+{% endblock %}
