@@ -4,25 +4,25 @@ Django-Project
 <br>
 
 - Index<br>
-![index](https://user-images.githubusercontent.com/64389162/118398200-8b17b800-b692-11eb-8ee2-571bd3d85a7d.gif)
+![index](https://user-images.githubusercontent.com/64389162/118398791-27db5500-b695-11eb-9a64-729b0540b9ca.gif)
 
 - Sign In/Sign Up<br>
-![loginout](https://user-images.githubusercontent.com/64389162/118398232-a84c8680-b692-11eb-86b7-4ea549e4aab0.gif)
+![loginout](https://user-images.githubusercontent.com/64389162/118398970-d8e1ef80-b695-11eb-903d-feab608fd4b4.gif)
 
 - 베스트 조합<br>
-![bestComb](https://user-images.githubusercontent.com/64389162/118398213-936ff300-b692-11eb-8e84-30fcd7d383f7.gif)
+![bestComb](https://user-images.githubusercontent.com/64389162/118398809-332e8080-b695-11eb-8147-faa2ff65ea02.gif)
 
 - 베스트 도전<br>
-![bestChall](https://user-images.githubusercontent.com/64389162/118398217-979c1080-b692-11eb-883a-f9826915e4c6.gif)
+![bestChall](https://user-images.githubusercontent.com/64389162/118398819-3b86bb80-b695-11eb-9155-7c481a3a43f3.gif)
 
 - detail<br>
-![detail](https://user-images.githubusercontent.com/64389162/118398226-a1be0f00-b692-11eb-9a62-8cc82d85d49d.gif)
+![detail](https://user-images.githubusercontent.com/64389162/118398841-49d4d780-b695-11eb-9ef1-c05c6d9fcc2d.gif)
 
 - 글 등록<br>
-![post](https://user-images.githubusercontent.com/64389162/118398224-9ec31e80-b692-11eb-9003-1465a7408d2e.gif)
+![post](https://user-images.githubusercontent.com/64389162/118398833-42adc980-b695-11eb-9360-fb19f4275149.gif)
 
 - 맞춤 추천<br>
-![recommend](https://user-images.githubusercontent.com/64389162/118398237-ac78a400-b692-11eb-8389-46cd02c20b2f.gif)
+![recommend](https://user-images.githubusercontent.com/64389162/118398973-e008fd80-b695-11eb-85e3-3613956a67f0.gif)
 
 - 반응형<br>
-![responsive](https://user-images.githubusercontent.com/64389162/118398238-b1d5ee80-b692-11eb-8450-59be0f50c07f.gif)
+![responsive](https://user-images.githubusercontent.com/64389162/118398976-e9926580-b695-11eb-87be-77edf8f67201.gif)
