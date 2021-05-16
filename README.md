@@ -42,6 +42,6 @@ Django-Project
 ![responsive](https://user-images.githubusercontent.com/64389162/118398976-e9926580-b695-11eb-87be-77edf8f67201.gif)
 <br><br>
 
-#### ✔ (모바일) 스타벅스 앱 나만의 메뉴에 등록 <2020.12.14 화면녹화>
+#### ✔ (모바일) 스타벅스 앱 나만의 메뉴에 등록 <u>2020.12.14. 기준</u>
 ![play](https://user-images.githubusercontent.com/64389162/118400128-4d6b5d00-b69b-11eb-9610-892dea323a9d.gif)
 
