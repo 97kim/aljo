@@ -8,6 +8,8 @@ Django-Project
 ### ⭐ 스타벅스 음료는 스타벅스 앱 나만의 메뉴에 추가 가능 ⭐<br>
 <hr>
 
+- 클릭 후 재생<br>
+
 #### ✔ Index<br>
 ![index](https://user-images.githubusercontent.com/64389162/118398791-27db5500-b695-11eb-9a64-729b0540b9ca.gif)
 <br>
