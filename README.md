@@ -4,6 +4,8 @@ Django-Project
 
 - Index
 
+- Sign In/Sign Up
+
 - 베스트 조합
 
 - 베스트 도전
