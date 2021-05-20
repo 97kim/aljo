@@ -34,7 +34,7 @@ Django-Project
 ![post](https://user-images.githubusercontent.com/64389162/118398833-42adc980-b695-11eb-9360-fb19f4275149.gif)
 <br><br>
 
-#### ✔ 맞춤 추천 (이전 사용자들의 기호 정보를 이용한 음료 추천 - 협업 알고리즘)<br>
+#### ✔ 맞춤 추천 (이전 사용자들의 기호 정보를 이용한 음료 추천 - 협업 필터링)<br>
 ![recommend](https://user-images.githubusercontent.com/64389162/118398973-e008fd80-b695-11eb-85e3-3613956a67f0.gif)
 <br><br>
 
