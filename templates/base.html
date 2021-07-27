@@ -20,7 +20,7 @@
 <body>
     <nav class="kjnavbg navbar navbar-expand-lg navbar-dark fixed-top">
           <a class="nav-link text-white" href="{% url 'home' %}"><span class="navbar-brand font-weight-bold font-italic">Aljo</span></a>
-            <div style="margin-right:30px; width:50%;">
+            <div style="margin-right:20px; width:50%;">
                 <form style="background:white; border-radius:80px;" enctype="multipart/form-data" action="{% url 'search' %}" method="post"> {% csrf_token %}
                     <input name="q" style="height:40px; width:80%; padding-left:20px;">
                     <input type="submit" value="🔍" class="btn-search" style="border:none; color:white; background:#1bc75f; height:40px;"></input>
