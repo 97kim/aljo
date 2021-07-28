@@ -8,9 +8,10 @@ Django-Project
 ### ⭐ 스타벅스 음료는 스타벅스 앱 나만의 메뉴에 추가 가능 ⭐<br>
 링크 : <https://custom-drink-share.herokuapp.com/>
 <hr>
+
 ### 😬 heroku 배포를 위해 기존 SQLite3를 PostgreSQL로 변경했는데 맞춤추천 기능이 작동하지 않음
 ### 😭 최근 스타벅스 앱의 리뉴얼로 인해 나만의 메뉴 등록 기능이 작동하지 않음
-
+<hr>
 
 💥 미리보기가 멈췄으면 클릭!!<br>
 
