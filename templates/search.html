@@ -9,7 +9,6 @@
     img{
         border-radius:30px;
         box-shadow: 0px 2px 7px 0.5px rgba(0, 0, 0, 0.7);
-        margin-bottom:10px;
     }
     .font{
         font-size:1.1rem;
@@ -29,6 +28,16 @@
         font-size:22px;
         font-weight:bold;
     }
+    .listview{
+        margin:10px 1% 7% 2%; float:left; width:30%;
+    }
+
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+        .listview{
+            margin:10px 1% 7% 2%;
+            clear:left;
+            width:100%;
+        }
 </style>
 {% endblock %}
 
@@ -45,12 +54,13 @@
                 <div>
                     <span style="font-size:35px; font-weight:bold;">{{q}}</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;검색결과</span>
                 </div><br>
-                <span class="board"> 베스트 조합</span><br>
+                <span class="board"> 베스트 조합</span><hr>
 
+                <div style="width:100%;">
                 {% for aljo in menus.all %}
-                    <div style="margin:10px 3% 7% 0; float:left; ">
-                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                    <div class="listview">
+                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                        <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
                         <span class="font">{{aljo.owner}}</span>
 
                         {% with aljo_like_users=aljo.like_users.all %}
@@ -63,16 +73,18 @@
 
                     </div>
                 {% endfor %}
+                </div>
 
 
                 <div style="clear:left;">
                     <br><hr><br><span class="board"> 베스트 도전</span><br>
                 </div>
 
+                <div style="width:100%;">
                 {% for aljouser in usermenus.all %}
-                    <div style="margin:10px 3% 7% 0; float:left; ">
-                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                    <div class="listview">
+                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
                         <span class="font">{{aljouser.owner}}</span>
 
                         {% with aljouser_like_users=aljouser.like_users.all %}
@@ -85,6 +97,7 @@
 
                     </div>
                 {% endfor %}
+                </div>
 
             {% elif menus and not usermenus%}
 
@@ -93,10 +106,11 @@
                 </div><br>
                 <span class="board"> 베스트 조합</span><br>
 
+                <div style="width:100%;">
                 {% for aljo in menus.all %}
-                    <div style="margin:10px 3% 3% 0; float:left; ">
-                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                    <div style="margin:10px 1% 7% 2%; float:left; ">
+                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                        <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
                         <span class="font">{{aljo.owner}}</span>
 
                         {% with aljo_like_users=aljo.like_users.all %}
@@ -109,6 +123,7 @@
 
                     </div>
                 {% endfor %}
+                </div>
 
             {% elif usermenus and not menus%}
 
@@ -117,10 +132,11 @@
                 </div><br>
                 <span class="board"> 베스트 도전</span><br>
 
+                <div style="width:100%;">
                 {% for aljouser in usermenus.all %}
-                    <div style="margin:10px 3% 3% 0; float:left; ">
-                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                    <div style="margin:10px 1% 7% 2%; float:left; ">
+                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
                         <span class="font">{{aljouser.owner}}</span>
 
                         {% with aljouser_like_users=aljouser.like_users.all %}
@@ -133,6 +149,7 @@
 
                     </div>
                 {% endfor %}
+                </div>
 
             {% endif %}
         </div>
