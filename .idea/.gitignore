@@ -1,4 +1,5 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-settings.py
+
+mysite/settings.py
