@@ -29,6 +29,17 @@
         font-size:22px;
         font-weight:bold;
     }
+    .listview{
+        margin:10px 1% 7% 2%; float:left; width:30%;
+    }
+
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+        .listview {
+            margin: 10px 1% 7% 2%;
+            clear: left;
+            width: 100%;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -63,9 +74,9 @@
                 </div>
 
                 {% for aljouser in gongchauser.all %}
-                    <div style="margin:10px 3% 7% 0; float:left; ">
+                    <div class="listview">
                         <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
                         <span class="font">{{aljouser.owner}}</span>
 
                         {% with aljouser_like_users=aljouser.like_users.all %}
@@ -87,9 +98,9 @@
                 <span class="board"> 관리자 게시판</span><br>
 
                 {% for aljo in gongcha.all %}
-                    <div style="margin:10px 3% 3% 0; float:left; ">
+                    <div class="listview">
                         <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h2>
+                        <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
                         <span class="font">{{aljo.owner}}</span>
 
                         {% with aljo_like_users=aljo.like_users.all %}
@@ -111,9 +122,9 @@
                 <span class="board"> 사용자 게시판</span><br>
 
                 {% for aljouser in gongchauser.all %}
-                    <div style="margin:10px 3% 3% 0; float:left; ">
+                    <div class="listview">
                         <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h2><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h2>
+                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
                         <span class="font">{{aljouser.owner}}</span>
 
                         {% with aljouser_like_users=aljouser.like_users.all %}
