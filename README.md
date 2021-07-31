@@ -6,7 +6,7 @@ Django-Project
 ### 🖥 카페 음료가 다양해진 만큼 커스텀할 수 있는 음료도 증가하고 있는 추세 🖥<br>
 ### 📱 다양한 커스텀 음료를 공유 📱<br>
 ### ⭐ 스타벅스 음료는 스타벅스 앱 나만의 메뉴에 추가 가능 ⭐<br>
-링크 : <https://custom-drink-share.herokuapp.com/>
+링크 : <https://custom-drink-app.herokuapp.com/>
 <hr>
 
 ### 😬 heroku 배포를 위해 기존 SQLite3를 PostgreSQL로 변경했는데 맞춤추천 기능이 작동하지 않음
