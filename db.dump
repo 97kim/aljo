@@ -1,0 +1,2389 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.3
+-- Dumped by pg_dump version 13.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+ALTER TABLE ONLY public.taggit_taggeditem DROP CONSTRAINT taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id;
+ALTER TABLE ONLY public.taggit_taggeditem DROP CONSTRAINT taggit_taggeditem_content_type_id_9957a03c_fk_django_co;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm;
+ALTER TABLE ONLY public.aljouser DROP CONSTRAINT aljouser_owner_id_94387d69_fk_auth_user_id;
+ALTER TABLE ONLY public.aljouser_like_users DROP CONSTRAINT aljouser_like_users_user_id_ee0a743f_fk_auth_user_id;
+ALTER TABLE ONLY public.aljouser_like_users DROP CONSTRAINT aljouser_like_users_aljouser_id_e9e8bbe0_fk_aljouser_id;
+ALTER TABLE ONLY public.aljouser_commentuser DROP CONSTRAINT aljouser_commentuser_writer_id_99dccb5a_fk_auth_user_id;
+ALTER TABLE ONLY public.aljouser_commentuser DROP CONSTRAINT aljouser_commentuser_aljo_id_94936d53_fk_aljouser_id;
+ALTER TABLE ONLY public.aljoadmin DROP CONSTRAINT aljoadmin_owner_id_8fff6d5e_fk_auth_user_id;
+ALTER TABLE ONLY public.aljoadmin_like_users DROP CONSTRAINT aljoadmin_like_users_user_id_47b8ac8f_fk_auth_user_id;
+ALTER TABLE ONLY public.aljoadmin_like_users DROP CONSTRAINT aljoadmin_like_users_aljoadmin_id_3ba83e79_fk_aljoadmin_id;
+ALTER TABLE ONLY public.aljoadmin_comment DROP CONSTRAINT aljoadmin_comment_writer_id_f6aeb839_fk_auth_user_id;
+ALTER TABLE ONLY public.aljoadmin_comment DROP CONSTRAINT aljoadmin_comment_aljo_id_5dd16261_fk_aljoadmin_id;
+DROP INDEX public.taggit_taggeditem_tag_id_f4f5b767;
+DROP INDEX public.taggit_taggeditem_object_id_e2d7d1df;
+DROP INDEX public.taggit_taggeditem_content_type_id_object_id_196cc965_idx;
+DROP INDEX public.taggit_taggeditem_content_type_id_9957a03c;
+DROP INDEX public.taggit_tag_slug_6be58b2c_like;
+DROP INDEX public.taggit_tag_name_58eb2ed9_like;
+DROP INDEX public.django_session_session_key_c0390e0f_like;
+DROP INDEX public.django_session_expire_date_a5c62663;
+DROP INDEX public.django_admin_log_user_id_c564eba6;
+DROP INDEX public.django_admin_log_content_type_id_c4bce8eb;
+DROP INDEX public.auth_user_username_6821ab7c_like;
+DROP INDEX public.auth_user_user_permissions_user_id_a95ead1b;
+DROP INDEX public.auth_user_user_permissions_permission_id_1fbb5f2c;
+DROP INDEX public.auth_user_groups_user_id_6a12ed8b;
+DROP INDEX public.auth_user_groups_group_id_97559544;
+DROP INDEX public.auth_permission_content_type_id_2f476e4b;
+DROP INDEX public.auth_group_permissions_permission_id_84c5c92e;
+DROP INDEX public.auth_group_permissions_group_id_b120cbf9;
+DROP INDEX public.auth_group_name_a6ea08ec_like;
+DROP INDEX public."aljouser_ownerU_id_decba7b3";
+DROP INDEX public.aljouser_like_users_user_id_ee0a743f;
+DROP INDEX public.aljouser_like_users_aljouser_id_e9e8bbe0;
+DROP INDEX public.aljouser_commentuser_writer_id_99dccb5a;
+DROP INDEX public.aljouser_commentuser_aljo_id_94936d53;
+DROP INDEX public.aljoadmin_slug_2e8d8937_like;
+DROP INDEX public.aljoadmin_owner_id_8fff6d5e;
+DROP INDEX public.aljoadmin_like_users_user_id_47b8ac8f;
+DROP INDEX public.aljoadmin_like_users_aljoadmin_id_3ba83e79;
+DROP INDEX public.aljoadmin_comment_owner_id_f7f562f5;
+DROP INDEX public.aljoadmin_comment_aljo_id_5dd16261;
+ALTER TABLE ONLY public.taggit_taggeditem DROP CONSTRAINT taggit_taggeditem_pkey;
+ALTER TABLE ONLY public.taggit_taggeditem DROP CONSTRAINT taggit_taggeditem_content_type_id_object_i_4bb97a8e_uniq;
+ALTER TABLE ONLY public.taggit_tag DROP CONSTRAINT taggit_tag_slug_key;
+ALTER TABLE ONLY public.taggit_tag DROP CONSTRAINT taggit_tag_pkey;
+ALTER TABLE ONLY public.taggit_tag DROP CONSTRAINT taggit_tag_name_key;
+ALTER TABLE ONLY public.recommend_recommend DROP CONSTRAINT recommend_recommend_pkey;
+ALTER TABLE ONLY public.django_session DROP CONSTRAINT django_session_pkey;
+ALTER TABLE ONLY public.django_migrations DROP CONSTRAINT django_migrations_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_username_key;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_pkey;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_name_key;
+ALTER TABLE ONLY public.aljouser DROP CONSTRAINT aljouser_pkey;
+ALTER TABLE ONLY public.aljouser_like_users DROP CONSTRAINT aljouser_like_users_pkey;
+ALTER TABLE ONLY public.aljouser_like_users DROP CONSTRAINT aljouser_like_users_aljouser_id_user_id_32fcea08_uniq;
+ALTER TABLE ONLY public.aljouser_commentuser DROP CONSTRAINT aljouser_commentuser_pkey;
+ALTER TABLE ONLY public.aljoadmin DROP CONSTRAINT aljoadmin_slug_key;
+ALTER TABLE ONLY public.aljoadmin DROP CONSTRAINT aljoadmin_pkey;
+ALTER TABLE ONLY public.aljoadmin_like_users DROP CONSTRAINT aljoadmin_like_users_pkey;
+ALTER TABLE ONLY public.aljoadmin_like_users DROP CONSTRAINT aljoadmin_like_users_aljoadmin_id_user_id_69faca2e_uniq;
+ALTER TABLE ONLY public.aljoadmin_comment DROP CONSTRAINT aljoadmin_comment_pkey;
+ALTER TABLE public.taggit_taggeditem ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.taggit_tag ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.recommend_recommend ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_migrations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_content_type ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_admin_log ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_user_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_groups ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_permission ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljouser_like_users ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljouser_commentuser ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljouser ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljoadmin_like_users ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljoadmin_comment ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.aljoadmin ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE public.taggit_taggeditem_id_seq;
+DROP TABLE public.taggit_taggeditem;
+DROP SEQUENCE public.taggit_tag_id_seq;
+DROP TABLE public.taggit_tag;
+DROP SEQUENCE public.recommend_recommend_id_seq;
+DROP TABLE public.recommend_recommend;
+DROP TABLE public.django_session;
+DROP SEQUENCE public.django_migrations_id_seq;
+DROP TABLE public.django_migrations;
+DROP SEQUENCE public.django_content_type_id_seq;
+DROP TABLE public.django_content_type;
+DROP SEQUENCE public.django_admin_log_id_seq;
+DROP TABLE public.django_admin_log;
+DROP SEQUENCE public.auth_user_user_permissions_id_seq;
+DROP TABLE public.auth_user_user_permissions;
+DROP SEQUENCE public.auth_user_id_seq;
+DROP SEQUENCE public.auth_user_groups_id_seq;
+DROP TABLE public.auth_user_groups;
+DROP TABLE public.auth_user;
+DROP SEQUENCE public.auth_permission_id_seq;
+DROP TABLE public.auth_permission;
+DROP SEQUENCE public.auth_group_permissions_id_seq;
+DROP TABLE public.auth_group_permissions;
+DROP SEQUENCE public.auth_group_id_seq;
+DROP TABLE public.auth_group;
+DROP SEQUENCE public.aljouser_like_users_id_seq;
+DROP TABLE public.aljouser_like_users;
+DROP SEQUENCE public.aljouser_id_seq;
+DROP SEQUENCE public.aljouser_commentuser_id_seq;
+DROP TABLE public.aljouser_commentuser;
+DROP TABLE public.aljouser;
+DROP SEQUENCE public.aljoadmin_like_users_id_seq;
+DROP TABLE public.aljoadmin_like_users;
+DROP SEQUENCE public.aljoadmin_id_seq;
+DROP SEQUENCE public.aljoadmin_comment_id_seq;
+DROP TABLE public.aljoadmin_comment;
+DROP TABLE public.aljoadmin;
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: aljoadmin; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljoadmin (
+    id integer NOT NULL,
+    foodname character varying(50) NOT NULL,
+    recipe character varying(100) NOT NULL,
+    image character varying(100),
+    create_dt timestamp with time zone NOT NULL,
+    modify_dt timestamp with time zone NOT NULL,
+    owner_id integer,
+    slug character varying(50),
+    brand character varying(30)
+);
+
+
+--
+-- Name: aljoadmin_comment; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljoadmin_comment (
+    id integer NOT NULL,
+    content character varying(200) NOT NULL,
+    create_dt timestamp with time zone,
+    modify_dt timestamp with time zone,
+    aljo_id integer NOT NULL,
+    writer_id integer
+);
+
+
+--
+-- Name: aljoadmin_comment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljoadmin_comment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljoadmin_comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljoadmin_comment_id_seq OWNED BY public.aljoadmin_comment.id;
+
+
+--
+-- Name: aljoadmin_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljoadmin_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljoadmin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljoadmin_id_seq OWNED BY public.aljoadmin.id;
+
+
+--
+-- Name: aljoadmin_like_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljoadmin_like_users (
+    id integer NOT NULL,
+    aljoadmin_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: aljoadmin_like_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljoadmin_like_users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljoadmin_like_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljoadmin_like_users_id_seq OWNED BY public.aljoadmin_like_users.id;
+
+
+--
+-- Name: aljouser; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljouser (
+    id integer NOT NULL,
+    foodname character varying(50) NOT NULL,
+    recipe text NOT NULL,
+    image character varying(100),
+    create_dt timestamp with time zone NOT NULL,
+    modify_dt timestamp with time zone NOT NULL,
+    owner_id integer,
+    brand character varying(30),
+    role character varying(10)
+);
+
+
+--
+-- Name: aljouser_commentuser; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljouser_commentuser (
+    id integer NOT NULL,
+    content character varying(200) NOT NULL,
+    create_dt timestamp with time zone,
+    modify_dt timestamp with time zone,
+    aljo_id integer NOT NULL,
+    writer_id integer
+);
+
+
+--
+-- Name: aljouser_commentuser_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljouser_commentuser_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljouser_commentuser_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljouser_commentuser_id_seq OWNED BY public.aljouser_commentuser.id;
+
+
+--
+-- Name: aljouser_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljouser_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljouser_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljouser_id_seq OWNED BY public.aljouser.id;
+
+
+--
+-- Name: aljouser_like_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aljouser_like_users (
+    id integer NOT NULL,
+    aljouser_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: aljouser_like_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aljouser_like_users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aljouser_like_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aljouser_like_users_id_seq OWNED BY public.aljouser_like_users.id;
+
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: recommend_recommend; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.recommend_recommend (
+    id integer NOT NULL,
+    q1 integer,
+    q2 integer,
+    q3 integer,
+    q4 integer,
+    q5 integer,
+    q6 integer,
+    q7 integer,
+    q8 integer,
+    q9 integer,
+    q10 integer,
+    q11 integer,
+    q12 integer,
+    q13 integer,
+    q14 integer,
+    q15 integer,
+    q16 integer,
+    q17 integer,
+    q18 integer,
+    q19 integer,
+    q20 integer
+);
+
+
+--
+-- Name: recommend_recommend_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.recommend_recommend_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: recommend_recommend_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.recommend_recommend_id_seq OWNED BY public.recommend_recommend.id;
+
+
+--
+-- Name: taggit_tag; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taggit_tag (
+    id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    slug character varying(100) NOT NULL
+);
+
+
+--
+-- Name: taggit_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taggit_tag_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taggit_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taggit_tag_id_seq OWNED BY public.taggit_tag.id;
+
+
+--
+-- Name: taggit_taggeditem; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taggit_taggeditem (
+    id integer NOT NULL,
+    object_id integer NOT NULL,
+    content_type_id integer NOT NULL,
+    tag_id integer NOT NULL
+);
+
+
+--
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taggit_taggeditem_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taggit_taggeditem_id_seq OWNED BY public.taggit_taggeditem.id;
+
+
+--
+-- Name: aljoadmin id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin ALTER COLUMN id SET DEFAULT nextval('public.aljoadmin_id_seq'::regclass);
+
+
+--
+-- Name: aljoadmin_comment id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_comment ALTER COLUMN id SET DEFAULT nextval('public.aljoadmin_comment_id_seq'::regclass);
+
+
+--
+-- Name: aljoadmin_like_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_like_users ALTER COLUMN id SET DEFAULT nextval('public.aljoadmin_like_users_id_seq'::regclass);
+
+
+--
+-- Name: aljouser id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser ALTER COLUMN id SET DEFAULT nextval('public.aljouser_id_seq'::regclass);
+
+
+--
+-- Name: aljouser_commentuser id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_commentuser ALTER COLUMN id SET DEFAULT nextval('public.aljouser_commentuser_id_seq'::regclass);
+
+
+--
+-- Name: aljouser_like_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_like_users ALTER COLUMN id SET DEFAULT nextval('public.aljouser_like_users_id_seq'::regclass);
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: recommend_recommend id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.recommend_recommend ALTER COLUMN id SET DEFAULT nextval('public.recommend_recommend_id_seq'::regclass);
+
+
+--
+-- Name: taggit_tag id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_tag ALTER COLUMN id SET DEFAULT nextval('public.taggit_tag_id_seq'::regclass);
+
+
+--
+-- Name: taggit_taggeditem id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem ALTER COLUMN id SET DEFAULT nextval('public.taggit_taggeditem_id_seq'::regclass);
+
+
+--
+-- Data for Name: aljoadmin; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljoadmin (id, foodname, recipe, image, create_dt, modify_dt, owner_id, slug, brand) FROM stdin;
+1	돼지바 프라푸치노	딸기 크림 프라푸치노 + 딸기시럽 6 + 자바칩&토핑 반반 6 + 초콜릿 드리즐 많이	images/2020/12/돼지바_프라푸치노.jpg	2020-12-11 19:11:37.719+09	2020-12-13 01:57:54.141+09	1	돼지바-프라푸치노	스타벅스
+2	버터비어 프라푸치노	카라멜 드리즐 많이 + 일반 휘핑 많이 + 바닐라크림 프라푸치노 + 카라멜시럽 2펌프 + 바닐라시럽 1펌프 + 헤이즐넛 2펌프	images/2020/12/버터비어_프라푸치노.jpg	2020-12-11 19:13:30.653+09	2020-12-13 01:56:44.225+09	1	버터비어-프라푸치노	스타벅스
+3	고디바 프라푸치노	통자바칩 + 초코드리즐 + 에스프레소 휘핑 많이+ 모카시럽 4펌프 + 헤이즐넛 시럽 5펌프 + 초코크림 프라푸치노	images/2020/12/고디바_프라푸치노.jpg	2020-12-11 19:20:25.479+09	2020-12-13 21:01:14.917+09	1	고디바-프라푸치노	스타벅스
+4	슈렉 플랫치노	녹차플랫치노 + 초콜릿 칩(반 갈고 반 휘핑 위) + 휘핑 + 초콜릿소스드리즐	images/2020/12/슈렉플랫치노.jpg	2020-12-11 21:36:48.26+09	2020-12-13 01:57:04.589+09	1	슈렉-플랫치노	이디야
+5	돼지바 쉐이크	딸기 쉐이크 + 초콜릿 소스 + 쿠키 크림 + 휘핑크림	images/2020/12/돼지바쉐이크.jpg	2020-12-11 21:39:02.391+09	2020-12-13 01:57:40.855+09	1	돼지바-쉐이크	이디야
+6	붕어싸만코 쉐이크	오리진 쉐이크 + 헤이즐넛 시럽 + 카라멜 시럽 + 휘핑크림	images/2020/12/붕어싸만코쉐이크.jpg	2020-12-11 21:40:20.807+09	2020-12-14 17:53:18.481+09	1	붕어싸만코-쉐이크	이디야
+7	타로 밀크티	타로 밀크티 + 얼음 보통 + 당도 50% + 타피오카 펄	images/2020/12/타로밀크티.jpg	2020-12-11 21:44:09.476+09	2020-12-14 18:08:18.206+09	1	타로-밀크티	공차
+8	초콜렛 밀크티	초콜렛 밀크티 + 얼음 적게 + 당도 70% + 타피오카 펄 + 밀크폼	images/2020/12/초콜렛밀크티.jpg	2020-12-11 21:45:27.027+09	2020-12-14 18:08:23.662+09	1	초콜렛-밀크티	공차
+9	제주 그린티 스무디	제주그린티스무디 + 얼음 보통 + 당도 50% + 타피오카 펄 + 밀크폼	images/2020/12/제주그린티스무디.jpg	2020-12-11 21:47:33.251+09	2020-12-13 01:58:42.036+09	1	제주-그린티-스무디	공차
+12	망고 스무디	망고 스무디 + 얼음 보통 + 당도 50% + 코코넛펄 추가	images/2020/12/공차망고스무디.PNG	2020-12-14 18:37:55.27+09	2020-12-14 18:37:55.27+09	1	망고-스무디	공차
+13	망고 요구르트	망고 요구르트 + 당도 30% + 코코넛펄 추가	images/2020/12/공차망고요구르트.PNG	2020-12-14 18:38:39.007+09	2020-12-14 18:38:39.007+09	1	망고-요구르트	공차
+14	블랙 밀크티	블랙 밀크티 + 당도 50~70% + 타피오카펄 추가	images/2020/12/공차블랙밀크티.PNG	2020-12-14 18:39:53.944+09	2020-12-14 18:39:53.944+09	1	블랙-밀크티	공차
+15	우롱 밀크티	우롱 밀크티 + 밀크폼 + 당도 50% + 타피오카펄 추가	images/2020/12/공차우롱밀크티.PNG	2020-12-14 18:41:45.733+09	2020-12-14 18:41:45.733+09	1	우롱-밀크티	공차
+17	네스퀵 플랫치노	초콜릿칩 플랫치노 + 헤이즐넛 시럽 + 초콜릿칩(반 갈고 반 휘핑 위) + 휘핑 + 초코드리즐	images/2020/12/네스퀵플랫치노.jpg	2020-12-14 19:20:43.65+09	2020-12-14 19:20:43.65+09	1	네스퀵-플랫치노	이디야
+18	토피넛 라떼(토샷추)	토피넛 라떼 + 에스프레소 샷	images/2020/12/이디야토피넛라떼.PNG	2020-12-14 19:23:05.732+09	2020-12-14 20:16:51.662+09	1	토피넛-라떼토샷추	이디야
+19	녹차 라떼	녹차 라떼 + 샷 추가	images/2020/12/녹차라떼.jpg	2020-12-14 19:26:20.599+09	2020-12-14 19:26:33.117+09	1	녹차-라떼	이디야
+20	아이스티(아샷추)	아이스티 + 샷 추가	images/2020/12/KakaoTalk_20201214_161555143_01.jpg	2020-12-14 19:27:21.194+09	2020-12-14 19:27:34.643+09	1	아이스티아샷추	이디야
+21	초콜릿크림칩 프라푸치노	초콜릿크림칩 프라푸치노 + 카라멜드리즐 + 에스프레소 휘핑크림으로 변경	images/2020/12/KakaoTalk_20201214_161555143_02.jpg	2020-12-14 19:29:19.129+09	2020-12-14 19:29:19.129+09	1	초콜릿크림칩-프라푸치노	스타벅스
+22	말차크림 프라푸치노	말차크림 프라푸치노 + 프라푸치노용 시럽(라이트) + 클래식 시럽 없이 + 유기농 말차 9 + 자바칩 토핑(반반) 5 + 일반 휘핑 많이	images/2020/12/KakaoTalk_20201214_161555143_03.jpg	2020-12-14 19:33:27.118+09	2020-12-14 19:33:27.118+09	1	말차크림-프라푸치노	스타벅스
+23	트윅스 프라푸치노	카라멜 프라푸치노 + 카라멜드리즐 + 초코드리즐 + 휘핑 추가 + 자바칩 반반	images/2020/12/KakaoTalk_20201214_161555143_04.jpg	2020-12-14 19:34:28.42+09	2020-12-14 19:34:28.42+09	1	트윅스-프라푸치노	스타벅스
+24	아메리카노	아이스 아메리카노 + 헤이즐넛 시럽	images/2020/12/KakaoTalk_20201214_161555143_05.jpg	2020-12-14 19:35:05.848+09	2020-12-14 19:35:05.848+09	1	아메리카노	스타벅스
+\.
+
+
+--
+-- Data for Name: aljoadmin_comment; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljoadmin_comment (id, content, create_dt, modify_dt, aljo_id, writer_id) FROM stdin;
+37	테스트	2020-12-12 18:19:29.21+09	2020-12-12 18:19:29.21+09	5	1
+\.
+
+
+--
+-- Data for Name: aljoadmin_like_users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljoadmin_like_users (id, aljoadmin_id, user_id) FROM stdin;
+33	1	2
+34	2	2
+35	3	2
+36	5	1
+37	5	2
+38	5	3
+39	8	2
+40	9	1
+\.
+
+
+--
+-- Data for Name: aljouser; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljouser (id, foodname, recipe, image, create_dt, modify_dt, owner_id, brand, role) FROM stdin;
+1	페레로로쉐 프라푸치노	자바칩 프라푸치노 + 헤이즐넛 드리즐 + 헤이즐넛 시럽 2펌프 + 모카 시럽 3펌프 + 휘핑크림\r\n\r\n제가 달달한 걸 좋아해서 제 최애 메뉴예요😍	images/2020/12/페레로로쉐_프라푸치노.jpg	2020-12-11 22:10:59.581+09	2020-12-11 22:36:35.913+09	2	스타벅스	알바생
+59	블랙 와플칩 크림 프라푸치노	블랙 와플 쿠키를 통채로 갈아서 만드는 거라고 하네요!\r\n제가 달콤한 거를 좋아해서 초코 드리즐이랑 카라멜 드리즐 추가해서 먹었는데 맛있었어요 👍👍	images/2020/12/블랙와플칩_크림프라푸치노.jpg	2020-12-11 22:35:49.282+09	2020-12-11 22:35:49.282+09	2	스타벅스	매니아
+60	블랙 밀크티	얼음 보통 + 당도 70% + 타피오카 펄\r\n\r\n당도 높을수록 맛이 진해져요. 진한 홍차 맛이 나요!	images/2020/12/블랙밀크티.jpg	2020-12-11 22:48:09.392+09	2020-12-11 22:48:09.392+09	3	공차	매니아
+61	딸기 쥬얼리 밀크티	얼그레이티로 만든 밀크티에 딸기 과즙이 함유됐대요!\r\n제가 선택하는 데 엄청난 고민을 해야 돼서 그냥 당도랑 얼음은 기본으로 했어요 ㅠㅠ\r\n근데도 맛있고 딱 제 취향이었네요😁 달달한 거 좋아하시는 분들에게 추천드립니다!!	images/2020/12/딸기쥬얼리밀크티.jpg	2020-12-11 22:53:11.293+09	2020-12-11 22:53:11.293+09	3	공차	매니아
+62	고구마 라떼	요즘 날씨가 추워서 따뜻한 음료를 마시는데 추천드리고 싶은 게 고구마 라떼입니다!\r\n\r\n고구마페이스트 레시피 정량대로 넣고 손님에게 드렸는데 밍밍하다고 하셨어요 ㅠㅠ 그래서 고구마 페이스트 반 스푼 정도 더 넣어드렸더니 흡족해 하시더라구요 ✌\r\n\r\n(그리고 비밀인데 시나몬 파우더 뿌려 먹으면 더 맛있어요)	images/2020/12/고구마라떼.jpg	2020-12-11 23:02:12.624+09	2020-12-11 23:02:12.624+09	3	이디야	알바생
+63	더블 그린 카페라떼	더블 그린 카페라떼 + 얼음 보통 + 타피오카펄 추가\r\n\r\n녹차 좋아해서 먹어봤는데 커피맛도 나고 맛있네요!	images/2020/12/더블그린.jpg	2020-12-14 19:41:14.309+09	2020-12-14 19:41:14.309+09	1	공차	매니아
+64	쿠앤크 프라푸치노	바닐라크림 프라푸치노 + 통자바칩 1/3 + 초코 휘핑 + 자바칩 2/3 갈기\r\n\r\n쿠앤크 아이스크림을 엄청 좋아하는데 스벅에도 커스텀으로 메뉴 먹어볼 수 있어서 먹어봤어요.\r\n완전 제 취향입니다...😉	images/2020/12/쿠앤크.jpg	2020-12-14 19:44:58.355+09	2020-12-14 19:44:58.355+09	1	스타벅스	매니아
+65	초코 쿠앤크 스무디	초코 쿠앤크 스무디 + 타피오카 펄 + 당도, 얼음 기본\r\n\r\n초코 좋아하면 절대! 실패할 일 없는 거 같아요.\r\n초코 좋아하면 드셔보세요😆	images/2020/12/초코쿠앤크.jpg	2020-12-14 19:53:17.101+09	2020-12-14 19:53:17.101+09	1	스타벅스	알바생
+66	골드키위주스	골드키위주스 + 시럽 추가\r\n\r\n이디야 과일 주스는 냉동과일팩 이외에 시럽이나 설탕을 넣지 않아서 추가해서 먹어봤어요. 키위를 좋아해서 그런지 언제 먹어도 맛있네요.	images/2020/12/키위.jpg	2020-12-14 20:00:17.111+09	2020-12-14 20:00:17.111+09	1	이디야	알바생
+\.
+
+
+--
+-- Data for Name: aljouser_commentuser; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljouser_commentuser (id, content, create_dt, modify_dt, aljo_id, writer_id) FROM stdin;
+44	시나몬 파우더 뿌려서 먹어봐야겠네요! 감사합니다😊	2020-12-12 14:51:53.514+09	2020-12-12 14:51:53.514+09	62	4
+\.
+
+
+--
+-- Data for Name: aljouser_like_users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.aljouser_like_users (id, aljouser_id, user_id) FROM stdin;
+9	59	1
+10	62	4
+\.
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add aljoadmin	7	add_aljoadmin
+26	Can change aljoadmin	7	change_aljoadmin
+27	Can delete aljoadmin	7	delete_aljoadmin
+28	Can view aljoadmin	7	view_aljoadmin
+29	Can add aljouser	8	add_aljouser
+30	Can change aljouser	8	change_aljouser
+31	Can delete aljouser	8	delete_aljouser
+32	Can view aljouser	8	view_aljouser
+33	Can add aljoadmin comment	9	add_aljoadmincomment
+34	Can change aljoadmin comment	9	change_aljoadmincomment
+35	Can delete aljoadmin comment	9	delete_aljoadmincomment
+36	Can view aljoadmin comment	9	view_aljoadmincomment
+37	Can add tag	10	add_tag
+38	Can change tag	10	change_tag
+39	Can delete tag	10	delete_tag
+40	Can view tag	10	view_tag
+41	Can add tagged item	11	add_taggeditem
+42	Can change tagged item	11	change_taggeditem
+43	Can delete tagged item	11	delete_taggeditem
+44	Can view tagged item	11	view_taggeditem
+45	Can add comment	12	add_comment
+46	Can change comment	12	change_comment
+47	Can delete comment	12	delete_comment
+48	Can view comment	12	view_comment
+49	Can add like	13	add_like
+50	Can change like	13	change_like
+51	Can delete like	13	delete_like
+52	Can view like	13	view_like
+53	Can add comment user	14	add_commentuser
+54	Can change comment user	14	change_commentuser
+55	Can delete comment user	14	delete_commentuser
+56	Can view comment user	14	view_commentuser
+57	Can add recommend	15	add_recommend
+58	Can change recommend	15	change_recommend
+59	Can delete recommend	15	delete_recommend
+60	Can view recommend	15	view_recommend
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$216000$QKtRL2cCFH11$7/xIPkQ544iAQnFGAnig9ia5TjVRAQZufDesILSuo9E=	2020-12-15 00:09:32.039+09	t	aljoofficial			aljo@naver.com	t	t	2020-11-27 17:54:43.059+09
+2	pbkdf2_sha256$216000$9tiYGPxGUq9h$aKKYq1nHVOhBqAQ1AX0nzVbHAqvclZuWj6S3dlXuY+8=	2020-12-14 21:16:17.684+09	f	user1				f	t	2020-11-30 17:54:51.343+09
+3	pbkdf2_sha256$216000$BYqlxxI5NPqD$/HikuaSraRji6cmT1GJCnK/dZLMx6NI+q3jntjBZviA=	2020-12-14 15:40:19.927+09	f	user2				f	t	2020-12-01 22:50:37.517+09
+4	pbkdf2_sha256$216000$ciM4rNrqG4Sx$XWUnC1wl3oV6OinbPgJHxTPhjr346lzHqUK/RIeT63k=	2020-12-14 17:22:32.655+09	f	user3				f	t	2020-12-04 10:35:45.761+09
+5	pbkdf2_sha256$216000$tViiFzm7ydZC$mIIIBPOzJtgBfoV34Gvmr16DRgJLpnwxPymfCd8azyA=	2020-12-08 14:22:09.574+09	f	user10				f	t	2020-12-08 14:21:59.136+09
+6	pbkdf2_sha256$216000$2NsDl2a9UOrO$uqYbMzCvY6JBGYpvRCVzF8dkwzeJLJ6o0jnSvAZXv/M=	\N	f	user11				f	t	2020-12-08 16:59:06.052+09
+7	pbkdf2_sha256$216000$vTHc7G2GKkY5$OXfaJxs9rxDQzGdozg+1P2MKsjP9+ZxopOQ4F6byjmQ=	2020-12-08 17:15:52.32+09	f	user12				f	t	2020-12-08 17:05:00.751+09
+8	pbkdf2_sha256$216000$wdaoFdeuNLx6$6/fG8ApMCdVOh5uiF5u6n1rS981B7p4dRxI7RZz+mgI=	2020-12-12 15:28:26.583+09	f	user5				f	t	2020-12-12 15:01:16.02+09
+9	pbkdf2_sha256$216000$P6qkqbhctIpG$9tg2VOfLFjX4db8cgGHY/h/saW/shMi6nCCYWQKl6N0=	\N	f	user6				f	t	2020-12-12 15:27:30.233+09
+10	pbkdf2_sha256$260000$ltW5piLW0XsTjIaspl6sWr$TW9uwEItNWgiKyK2ZtEzfih9xqogatKuuknwyp3Bixw=	2021-07-26 04:24:32.894785+09	f	testuser1				f	t	2021-07-26 02:20:43.593+09
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2020-11-27 18:05:46.622+09	1	돼지바 프라푸치노	1	[{"added": {}}]	7	1
+2	2020-11-28 03:11:53.004+09	1	돼지바 프라푸치노	2	[]	7	1
+3	2020-11-27 18:12:05.485+09	1	돼지바 프라푸치노	2	[]	7	1
+4	2020-11-27 18:12:14.535+09	1	돼지바 프라푸치노	2	[]	7	1
+5	2020-11-27 21:04:33.768+09	2	버터비어 프라푸치노	1	[{"added": {}}]	7	1
+6	2020-11-29 19:34:42.77+09	2	버터비어 프라푸치노	2	[{"changed": {"fields": ["SLUG"]}}]	7	1
+7	2020-11-29 19:34:54.708+09	1	돼지바 프라푸치노	2	[{"changed": {"fields": ["SLUG"]}}]	7	1
+8	2020-11-29 19:35:50.038+09	2	버터비어 프라푸치노	2	[]	7	1
+9	2020-11-29 21:55:32.589+09	1	사용자 메뉴 테스트	1	[{"added": {}}]	8	1
+10	2020-11-29 22:33:36.638+09	1	돼지바 프라푸치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+11	2020-11-29 22:33:46.672+09	1	돼지바 프라푸치노	2	[]	7	1
+12	2020-11-29 22:34:26.38+09	2	버터비어 프라푸치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+13	2020-11-29 23:13:35.057+09	1	사용자 메뉴 테스트	2	[{"changed": {"fields": ["Tags"]}}]	8	1
+14	2020-11-29 23:13:42.371+09	1	사용자 메뉴 테스트	2	[]	8	1
+15	2020-11-29 23:14:59.363+09	1	사용자 메뉴 테스트	2	[]	8	1
+16	2020-11-30 21:49:43.666+09	2	버터비어 프라푸치노	2	[{"changed": {"fields": ["RECIPE"]}}]	7	1
+17	2020-11-30 23:26:45.61+09	1	사용자 메뉴 테스트	2	[{"changed": {"fields": ["BRAND", "ROLE"]}}]	8	1
+18	2020-11-30 23:26:53.687+09	1	돼지바 프라푸치노	2	[{"changed": {"fields": ["BRAND"]}}]	7	1
+19	2020-11-30 23:26:59.604+09	2	버터비어 프라푸치노	2	[{"changed": {"fields": ["BRAND"]}}]	7	1
+20	2020-12-01 23:01:11.067+09	1	사용자 메뉴 테스트	2	[{"changed": {"fields": ["OWNER"]}}]	8	1
+21	2020-12-01 23:14:37.161+09	24	thanks	3		12	1
+22	2020-12-01 23:14:37.173+09	23	ㅎ	3		12	1
+23	2020-12-01 23:14:37.18+09	22	또 한 번 테스트	3		12	1
+24	2020-12-01 23:14:37.187+09	21	ㅋㅋㅋ	3		12	1
+25	2020-12-01 23:15:49.555+09	16	ㅎ	3		14	1
+26	2020-12-02 19:38:51.765+09	2	test	3		8	1
+27	2020-12-02 19:41:57.122+09	3	테스트용	2	[{"changed": {"fields": ["Like users"]}}]	8	1
+28	2020-12-02 19:42:43.226+09	3	테스트용	2	[{"changed": {"fields": ["IMAGE", "Like users"]}}]	8	1
+29	2020-12-02 19:44:47.921+09	4	d	2	[{"changed": {"fields": ["IMAGE"]}}]	8	1
+30	2020-12-02 19:53:50.438+09	4	d	3		8	1
+31	2020-12-02 19:53:50.446+09	3	테스트용	3		8	1
+32	2020-12-02 20:01:55.694+09	5	dd	2	[{"changed": {"fields": ["IMAGE"]}}]	8	1
+33	2020-12-02 20:03:10.549+09	7	test2	3		8	1
+34	2020-12-02 20:03:10.559+09	6	test	3		8	1
+35	2020-12-02 20:03:10.565+09	5	dd	3		8	1
+36	2020-12-02 20:25:27.073+09	1	사용자 메뉴 테스트	3		8	1
+37	2020-12-02 20:25:31.506+09	8	테스트입니다	3		8	1
+38	2020-12-02 21:10:51.745+09	16	ㅇㅇ	3		8	1
+39	2020-12-02 21:10:51.757+09	15	안녕하세요	3		8	1
+40	2020-12-02 21:10:51.763+09	14	ㅇㅁㄻㄹㅇ	3		8	1
+41	2020-12-02 21:10:51.77+09	13	ㅇ	3		8	1
+42	2020-12-02 21:10:51.776+09	12	테스트	3		8	1
+43	2020-12-02 21:10:51.783+09	11	ㅌㅅㅌ	3		8	1
+44	2020-12-02 21:13:31.662+09	19	ㅁㅇㄴㄹㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ	3		8	1
+45	2020-12-02 21:13:31.672+09	18	ㅁㅇㄴㄹㅇ	3		8	1
+46	2020-12-02 21:13:31.677+09	17	ㅁㅇㄴㄹ	3		8	1
+47	2020-12-02 21:18:29.823+09	23	ㅇㅇㅁ	3		8	1
+48	2020-12-02 21:18:39.983+09	22	ㅇㅇ	2	[{"changed": {"fields": ["IMAGE"]}}]	8	1
+49	2020-12-02 21:24:47.532+09	22	ㅇㅇ	3		8	1
+50	2020-12-02 21:24:47.541+09	10	고디바 프라푸치노	3		8	1
+51	2020-12-02 21:37:09.999+09	24	안녕하세요 테스트	3		8	1
+52	2020-12-02 23:05:34.054+09	29	ㄴ	3		8	1
+53	2020-12-02 23:44:33.197+09	30	d	3		8	1
+54	2020-12-02 23:44:33.209+09	28	ㄴㄴㄴㄴ	3		8	1
+55	2020-12-02 23:44:33.215+09	27	hello	3		8	1
+56	2020-12-03 00:10:12.877+09	25	테스트	3		14	1
+57	2020-12-03 00:10:12.889+09	24	테스토	3		14	1
+58	2020-12-03 00:10:12.896+09	23	테스트	3		14	1
+59	2020-12-03 00:10:22.257+09	31	테스트	3		12	1
+60	2020-12-03 00:10:22.268+09	30	테스트	3		12	1
+61	2020-12-03 00:10:22.273+09	29	테스트	3		12	1
+62	2020-12-03 00:10:22.28+09	28	세 번째	3		12	1
+63	2020-12-03 00:10:22.286+09	27	두 번째 댓글입니다.	3		12	1
+64	2020-12-03 00:10:22.291+09	26	첫 댓글입니다.	3		12	1
+65	2020-12-03 00:10:22.298+09	25	첫 댓글입니다.	3		12	1
+66	2020-12-03 00:11:38.228+09	26	ㄳ	3		14	1
+67	2020-12-09 14:17:32.528+09	47	i	3		8	1
+68	2020-12-09 14:17:32.549+09	46	k	3		8	1
+69	2020-12-09 14:17:32.566+09	45	j	3		8	1
+70	2020-12-09 14:17:32.579+09	35	b	3		8	1
+71	2020-12-09 14:17:32.596+09	34	ㅁ	3		8	1
+72	2020-12-09 14:17:32.61+09	33	dd	3		8	1
+73	2020-12-09 14:17:32.627+09	32	테스트입니다	3		8	1
+74	2020-12-11 14:24:57.638+09	37	width:100%;\r\nwidth:100%;\r\nwidth:100%;\r\nwidth:100%;	3		14	1
+75	2020-12-11 14:24:57.647+09	36	여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요	3		14	1
+76	2020-12-11 14:24:57.657+09	35	여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요여러줄을입력해볼게요	3		14	1
+77	2020-12-11 17:55:24.07+09	2	버터비어 프라푸치노	3		7	1
+78	2020-12-11 17:57:04.353+09	1	돼지바 프라푸치노	3		7	1
+79	2020-12-11 17:57:12.653+09	52	이디야	3		8	1
+80	2020-12-11 17:57:12.664+09	51	공차	3		8	1
+81	2020-12-11 17:57:12.671+09	50	스벅	3		8	1
+82	2020-12-11 19:06:44.16+09	55	f	3		8	1
+83	2020-12-11 19:11:37.742+09	3	돼지바 프라푸치노	1	[{"added": {}}]	7	1
+84	2020-12-11 19:13:30.667+09	4	버터비어 프라푸치노	1	[{"added": {}}]	7	1
+85	2020-12-11 19:13:55.705+09	3	돼지바 프라푸치노	2	[{"changed": {"fields": ["OWNER"]}}]	7	1
+86	2020-12-11 19:14:01.18+09	4	버터비어 프라푸치노	2	[{"changed": {"fields": ["OWNER"]}}]	7	1
+87	2020-12-11 19:20:25.492+09	5	고디바 프라푸치노	1	[{"added": {}}]	7	1
+88	2020-12-11 21:36:48.324+09	6	슈렉 플랫치노	1	[{"added": {}}]	7	1
+89	2020-12-11 21:39:02.429+09	7	돼지바 쉐이크	1	[{"added": {}}]	7	1
+90	2020-12-11 21:40:20.849+09	8	붕어싸만코쉐이크	1	[{"added": {}}]	7	1
+91	2020-12-11 21:44:09.538+09	9	타로 밀크티	1	[{"added": {}}]	7	1
+92	2020-12-11 21:45:27.081+09	10	초콜렛 밀크티	1	[{"added": {}}]	7	1
+93	2020-12-11 21:47:33.311+09	11	제주 그린티 스무디	1	[{"added": {}}]	7	1
+94	2020-12-11 23:29:49.356+09	43	댓글 테스트	3		14	1
+95	2020-12-13 01:56:21.548+09	3	고디바 프라푸치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+96	2020-12-13 01:56:44.239+09	2	버터비어 프라푸치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+97	2020-12-13 01:57:04.613+09	4	슈렉 플랫치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+98	2020-12-13 01:57:20.977+09	5	돼지바 쉐이크	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+99	2020-12-13 01:57:40.874+09	5	돼지바 쉐이크	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+100	2020-12-13 01:57:54.16+09	1	돼지바 프라푸치노	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+101	2020-12-13 01:58:06.655+09	6	붕어싸만코쉐이크	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+102	2020-12-13 01:58:16.338+09	7	타로 밀크티	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+103	2020-12-13 01:58:31.053+09	8	초콜렛 밀크티	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+104	2020-12-13 01:58:42.06+09	9	제주 그린티 스무디	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+105	2020-12-13 21:01:14.926+09	3	고디바 프라푸치노	2	[{"changed": {"fields": ["RECIPE"]}}]	7	1
+106	2020-12-14 17:53:18.489+09	6	붕어싸만코 쉐이크	2	[{"changed": {"fields": ["FOOD_NAME"]}}]	7	1
+107	2020-12-14 18:08:18.215+09	7	타로 밀크티	2	[{"changed": {"fields": ["RECIPE"]}}]	7	1
+108	2020-12-14 18:08:23.67+09	8	초콜렛 밀크티	2	[{"changed": {"fields": ["RECIPE"]}}]	7	1
+109	2020-12-14 18:37:55.296+09	12	망고 스무디	1	[{"added": {}}]	7	1
+110	2020-12-14 18:38:39.031+09	13	망고 요구르트	1	[{"added": {}}]	7	1
+111	2020-12-14 18:39:53.967+09	14	블랙 밀크티	1	[{"added": {}}]	7	1
+112	2020-12-14 18:41:45.763+09	15	우롱 밀크티	1	[{"added": {}}]	7	1
+113	2020-12-14 18:45:58.304+09	16	슈렉플랫치노	1	[{"added": {}}]	7	1
+114	2020-12-14 18:46:12.604+09	16	슈렉플랫치노	3		7	1
+115	2020-12-14 19:20:43.673+09	17	네스퀵 플랫치노	1	[{"added": {}}]	7	1
+116	2020-12-14 19:23:05.757+09	18	토샷추	1	[{"added": {}}]	7	1
+117	2020-12-14 19:26:20.622+09	19	녹차 라떼	1	[{"added": {}}]	7	1
+118	2020-12-14 19:26:28.973+09	18	토샷추	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+119	2020-12-14 19:26:33.132+09	19	녹차 라떼	2	[]	7	1
+120	2020-12-14 19:27:21.215+09	20	아이스티(아샷추)	1	[{"added": {}}]	7	1
+121	2020-12-14 19:27:34.66+09	20	아이스티(아샷추)	2	[{"changed": {"fields": ["Tags"]}}]	7	1
+122	2020-12-14 19:29:19.149+09	21	초콜릿크림칩 프라푸치노	1	[{"added": {}}]	7	1
+123	2020-12-14 19:33:27.146+09	22	말차크림 프라푸치노	1	[{"added": {}}]	7	1
+124	2020-12-14 19:34:28.45+09	23	트윅스 프라푸치노	1	[{"added": {}}]	7	1
+125	2020-12-14 19:35:05.862+09	24	아메리카노	1	[{"added": {}}]	7	1
+126	2020-12-14 20:16:51.672+09	18	토피넛 라떼(토샷추)	2	[{"changed": {"fields": ["FOOD_NAME"]}}]	7	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	aljoadmin	aljoadmin
+8	aljouser	aljouser
+9	aljoadmin	aljoadmincomment
+10	taggit	tag
+11	taggit	taggeditem
+12	aljoadmin	comment
+13	aljoadmin	like
+14	aljouser	commentuser
+15	recommend	recommend
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-07-26 02:00:52.571169+09
+2	auth	0001_initial	2021-07-26 02:00:52.609361+09
+3	admin	0001_initial	2021-07-26 02:00:52.621632+09
+4	admin	0002_logentry_remove_auto_add	2021-07-26 02:00:52.62683+09
+5	admin	0003_logentry_add_action_flag_choices	2021-07-26 02:00:52.632047+09
+6	taggit	0001_initial	2021-07-26 02:00:52.647838+09
+7	taggit	0002_auto_20150616_2121	2021-07-26 02:00:52.65368+09
+8	contenttypes	0002_remove_content_type_name	2021-07-26 02:00:52.666319+09
+9	taggit	0003_taggeditem_add_unique_index	2021-07-26 02:00:52.670536+09
+10	aljoadmin	0001_initial	2021-07-26 02:00:52.680594+09
+11	aljoadmin	0002_aljoadmincomment	2021-07-26 02:00:52.693474+09
+12	aljoadmin	0003_delete_aljoadmincomment	2021-07-26 02:00:52.697629+09
+13	aljoadmin	0004_aljoadmin_slug	2021-07-26 02:00:52.705522+09
+14	aljoadmin	0005_auto_20201129_1936	2021-07-26 02:00:52.711941+09
+15	aljoadmin	0006_auto_20201129_1936	2021-07-26 02:00:52.717322+09
+16	aljoadmin	0007_aljoadmin_tags	2021-07-26 02:00:52.723259+09
+17	aljoadmin	0008_auto_20201130_1053	2021-07-26 02:00:52.733823+09
+18	aljoadmin	0009_comment	2021-07-26 02:00:52.744904+09
+19	aljoadmin	0010_auto_20201130_1454	2021-07-26 02:00:52.761624+09
+20	aljoadmin	0011_auto_20201130_1513	2021-07-26 02:00:52.77298+09
+21	aljoadmin	0012_auto_20201130_1515	2021-07-26 02:00:52.783617+09
+22	aljoadmin	0013_auto_20201130_1758	2021-07-26 02:00:52.794013+09
+23	aljoadmin	0014_auto_20201130_1804	2021-07-26 02:00:52.80498+09
+24	aljoadmin	0015_like	2021-07-26 02:00:52.818091+09
+25	aljoadmin	0016_delete_like	2021-07-26 02:00:52.821535+09
+26	aljoadmin	0017_aljoadmin_like_users	2021-07-26 02:00:52.836761+09
+27	aljoadmin	0018_remove_aljoadmin_like_users	2021-07-26 02:00:52.845506+09
+28	aljoadmin	0019_aljoadmin_brand	2021-07-26 02:00:52.85277+09
+29	aljoadmin	0020_aljoadmin_likes_user	2021-07-26 02:00:52.865534+09
+30	aljoadmin	0021_remove_aljoadmin_likes_user	2021-07-26 02:00:52.875841+09
+31	aljoadmin	0022_aljoadmin_like_users	2021-07-26 02:00:52.889489+09
+32	aljoadmin	0023_auto_20201201_2342	2021-07-26 02:00:52.910201+09
+33	aljoadmin	0024_remove_aljoadmin_like	2021-07-26 02:00:52.918801+09
+34	aljoadmin	0025_aljoadmin_like_users	2021-07-26 02:00:52.93334+09
+35	aljoadmin	0026_remove_aljoadmin_good	2021-07-26 02:00:52.940369+09
+36	aljoadmin	0027_auto_20201211_1910	2021-07-26 02:00:52.947307+09
+37	aljouser	0001_initial	2021-07-26 02:00:52.963554+09
+38	aljouser	0002_aljouser_slugu	2021-07-26 02:00:52.971951+09
+39	aljouser	0003_auto_20201129_2205	2021-07-26 02:00:53.063919+09
+40	aljouser	0004_auto_20201129_2312	2021-07-26 02:00:53.082281+09
+41	aljouser	0005_remove_aljouser_bad	2021-07-26 02:00:53.094237+09
+42	aljouser	0006_commentuser	2021-07-26 02:00:53.117632+09
+43	aljouser	0007_auto_20201130_2325	2021-07-26 02:00:53.158612+09
+44	aljouser	0008_auto_20201130_2345	2021-07-26 02:00:53.169425+09
+45	aljouser	0009_auto_20201202_0136	2021-07-26 02:00:53.206977+09
+46	aljouser	0010_auto_20201202_1944	2021-07-26 02:00:53.218285+09
+47	aljouser	0011_auto_20201202_2125	2021-07-26 02:00:53.228686+09
+48	aljouser	0012_auto_20201205_1548	2021-07-26 02:00:53.260623+09
+49	aljouser	0013_auto_20201205_1556	2021-07-26 02:00:53.281845+09
+50	aljouser	0014_aljouser_like	2021-07-26 02:00:53.294197+09
+51	aljouser	0015_remove_aljouser_like	2021-07-26 02:00:53.30461+09
+52	aljouser	0016_aljouser_likeu	2021-07-26 02:00:53.31893+09
+53	aljouser	0017_remove_aljouser_likeu	2021-07-26 02:00:53.333286+09
+54	aljouser	0018_remove_aljouser_slug	2021-07-26 02:00:53.344379+09
+55	auth	0002_alter_permission_name_max_length	2021-07-26 02:00:53.357745+09
+56	auth	0003_alter_user_email_max_length	2021-07-26 02:00:53.371134+09
+57	auth	0004_alter_user_username_opts	2021-07-26 02:00:53.382455+09
+58	auth	0005_alter_user_last_login_null	2021-07-26 02:00:53.392686+09
+59	auth	0006_require_contenttypes_0002	2021-07-26 02:00:53.396134+09
+60	auth	0007_alter_validators_add_error_messages	2021-07-26 02:00:53.407847+09
+61	auth	0008_alter_user_username_max_length	2021-07-26 02:00:53.425939+09
+62	auth	0009_alter_user_last_name_max_length	2021-07-26 02:00:53.439353+09
+63	auth	0010_alter_group_name_max_length	2021-07-26 02:00:53.458266+09
+64	auth	0011_update_proxy_permissions	2021-07-26 02:00:53.468714+09
+65	auth	0012_alter_user_first_name_max_length	2021-07-26 02:00:53.482701+09
+66	recommend	0001_initial	2021-07-26 02:00:53.500886+09
+67	recommend	0002_auto_20201213_0052	2021-07-26 02:00:53.50598+09
+68	recommend	0003_auto_20201213_0054	2021-07-26 02:00:53.510532+09
+69	recommend	0004_auto_20201213_0101	2021-07-26 02:00:53.515443+09
+70	recommend	0005_auto_20201213_0102	2021-07-26 02:00:53.521646+09
+71	recommend	0006_auto_20201213_0110	2021-07-26 02:00:53.548091+09
+72	recommend	0007_auto_20201213_0112	2021-07-26 02:00:53.565317+09
+73	recommend	0008_auto_20201213_0113	2021-07-26 02:00:53.579845+09
+74	recommend	0009_remove_recommend_user	2021-07-26 02:00:53.599076+09
+75	recommend	0010_recommend_user	2021-07-26 02:00:53.613524+09
+76	recommend	0011_remove_recommend_user	2021-07-26 02:00:53.631341+09
+77	recommend	0012_recommend_user	2021-07-26 02:00:53.647806+09
+78	recommend	0013_remove_recommend_user	2021-07-26 02:00:53.667189+09
+79	sessions	0001_initial	2021-07-26 02:00:53.6735+09
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+qw69ln0d8vetz9lh3v2y3bbejeo64yv8	.eJxVjDsOwyAQRO9CHSHMLhhSpvcZEMsnOIlAMnYV5e6xJRdJN5r3Zt7M-W0tbutpcXNkVzYIdvktyYdnqgeJD1_vjYdW12Umfij8pJ1PLabX7XT_DorvZV8bq60BoRWOA6mcjYxKhmijDnpPgCMigUaSaEEG8uilSCKQtJA1APt8AdtFNxc:1m7jjk:MByzLWNeRVPsENe_1RWp1F11Zb6IqmnHo1p4rvJtlJo	2021-08-09 04:24:32.898799+09
+32picc7pd7eigxo8ssfcf62eoiocppag	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1knjQM:exfKq4JTH0I9Bo-bQVLi6lhIEJy6AX0oGpGHCzEgIl4	2020-12-25 23:29:34.309+09
+55o934fj80pgtrecit8agfvwnh6dhh33	.eJxVjMsOwiAQRf-FtSE8CoMu3fsNZGAGqRqalHZl_HfbpAvd3nPOfYuI61Lj2nmOI4mLMOL0uyXMT247oAe2-yTz1JZ5THJX5EG7vE3Er-vh_h1U7HWrfbAAUKx1SYEjQDWE5EwGb4sGdUaXtTbGMw0YMGmHmbhsomFF6JX4fAG-RDeX:1komm1:weNWssrtyCu_7fq_BZsEJVkDeHGW3fTFPQiuUSSA_1k	2020-12-28 21:16:17.69+09
+6mksvo2oa19gzasjp44vqtikk5sgssx8	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kmrGM:Vplhr6ahjunkWZy2Rj8jSwlNfLANd782P7RPgFg64d0	2020-12-23 13:39:38.955+09
+7oj80wtnkceyhnkizr9psrxhmwkc0rmd	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1knj3H:h02a_c-G0FsecGanjHODJbqe9vB1gw4qhqQoVWjeSYs	2020-12-25 23:05:43.461+09
+9wxk8ddfd3qzor8ep8jpoocmp2yv9opo	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kmXje:8LI0u4N8HpgBNZ7QXRyi0Y1fU1ND-nzxCrGpXThZKzk	2020-12-22 16:48:34.082+09
+fb4iylbp6zo1cjquq23c8yptrhk5gxjh	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kjtxv:tX9y1l0PfDXBIN2-zYYrBPVd5ozN5Jo-BLGNI5T6Dys	2020-12-15 09:56:23.383+09
+g4ivn9edw16c5ndtgnvhvjlwtadch8oa	.eJxVjMsOwiAQRf-FtSE8CoMu3fsNZGAGqRqalHZl_HfbpAvd3nPOfYuI61Lj2nmOI4mLMOL0uyXMT247oAe2-yTz1JZ5THJX5EG7vE3Er-vh_h1U7HWrfbAAUKx1SYEjQDWE5EwGb4sGdUaXtTbGMw0YMGmHmbhsomFF6JX4fAG-RDeX:1kkSm4:F9Kf4hvVZYkVrotKGPSojuJY8KYfAyv2MhBNbqunuoY	2020-12-16 23:06:28.548+09
+gbw714ad52wgqgl6snzf2t8yyzd7uu43	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kn0ic:nKVZKpBfdDSC04MRcQCF1cIsYSoteallM2FaaV-R3g8	2020-12-23 23:45:26.438+09
+oijvz2zgwqucxvzn026ajtg7zctd096c	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kn0S6:VmRY086HbQ_UNcXZUAJdBIBsgb2tFakeo-Wd6Tu9iHc	2020-12-23 23:28:22.953+09
+ospey8agsqf94lbgavvjwwkmaqyaclvl	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kkmXx:Oo9JbfNYZyyOiT2-NRGueMrBn0Sfe-NUehX9G16zgo8	2020-12-17 20:13:13.418+09
+qoxprks21bxgonm6hjkbo9bmp4exylut	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1knAjL:S9OamOntolRlHH8v77jdgjmBvzgMvRhkSNYbjvdnUiI	2020-12-24 10:26:51.54+09
+r5qb5uvm2i4wa1s1mv2mvqexnuyyz919	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kkPNf:7Owh65tfEDBZ5Wc-TG1uJNL2QYuWC8IV-YWM7LA-itE	2020-12-16 19:29:03.727+09
+sxekn61p8ex4cto8zbuk6e6sproyzpp3	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1knjhF:Ppo9ZQSvQlzvQzNjtlrCv3sKBOkkzPZ9BKSVLXUvLPo	2020-12-25 23:47:01.489+09
+syx4pj38yb6xk8y9wu3cyioxw78exku4	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kk8ys:1h1P6Kq-VNSlZJiaqJ5jrDb7lsshoQLENJXJfgNwHls	2020-12-16 01:58:22.376+09
+szav1s6cvs0gtlnhl2kwt2r0ljqcrtnp	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kkQFs:_l0gOgqAGDQvoZdmzgj9vVMUw44t58n-aV9i9UJibt4	2020-12-16 20:25:04.794+09
+tkar6y3rsk9eufp3tx9ucivh38212yer	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kopTg:HblvNtJ6RnWzq_TCfZlO4KOasKbJSgXLw-UrRrbB7pI	2020-12-29 00:09:32.052+09
+v8yv8sou1c29psdpxx550szjbbclxqsa	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kiZWx:saRq9fOUssIupTmDGaL6hAyTVO8Bnh-FCZu1g1lIBVQ	2020-12-11 17:55:03.723+09
+w0odc7dt8tvw7o6jyy9oyeckkkzi45dg	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1knj0T:5AtGZJwHR77xl0IsLgnHevG-GgaNRPHYTwEDjfvVfmM	2020-12-25 23:02:49.265+09
+w2tituz2nqpuo9j5sptpmhp869yponip	.eJxVjDsOwyAQRO9CHSHMLhhSpvcZEMsnOIlAMnYV5e6xJRdJN5r3Zt7M-W0tbutpcXNkVzYIdvktyYdnqgeJD1_vjYdW12Umfij8pJ1PLabX7XT_DorvZV8bq60BoRWOA6mcjYxKhmijDnpPgCMigUaSaEEG8uilSCKQtJA1APt8AdtFNxc:1m7hoB:iJGx-xMHIl3g1uYWP4pTwQBnmehCgjK2y1qN8K8EpHs	2021-08-09 02:20:59.104+09
+xh7nllpuwh1lr3xo9m1lex74lwwf8ypu	.eJxVjE0OwiAYBe_C2hB-LXXpvmcg8PGQqoGktCvj3bVJF7p9M_NezIdtLX7rWPyc2IVpdvrdYqAH6g7SPdRb49TqusyR7wo_aOdTS3heD_fvoIRevvXZQJOFHIWTOgfohJyzciI4E0c4ArK0ioS1gFPCJnJGDEkNsDqSYe8P-944aw:1knyPI:G6F27s_NtkMUGk0Yy5-o9Htdn0yN-Y78wz_w84RGyuU	2020-12-26 15:29:28.585+09
+ynxkrf6nbs7paddh9s4gjz5ged2wn5fm	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kjIqs:yDLSmNtm2aAKPZln2rn3-jCLp9UGffVxF_ABLicNwAI	2020-12-13 18:18:38.899+09
+6sqo3t1r4avna6ceyfh5ovq3qyq1n5zh	.eJxVjMEOwiAQRP-FsyGAhd169O43kAUWqRpISnsy_rtt0oMeZ96beQtP61L82nn2UxIXocXptwsUn1x3kB5U703GVpd5CnJX5EG7vLXEr-vh_h0U6mVbW40I0TqyIyrHyUQVGJTF7JQy6RwtZxyCGi0FIGO2nIA0DCaDRs3i8wXMQTd0:1m7hfk:cmJ1MtzlYEeLU4yi8RNB7ZkSDNgISXsqrdEQLdtu4kg	2021-08-09 02:12:16.665032+09
+yvtvzldcmq46i9aolf4a29jlks1g96w7	.eJxVjEEOwiAQRe_C2hAgFTou3XsGMjMMUjWQlHbVeHdt0oVu_3vvbyriupS4dpnjlNRFWXX63Qj5KXUH6YH13jS3uswT6V3RB-361pK8rof7d1Cwl299dkAGEyMZNwIbi4PxYlEgDRk8YDAh5GTBO3EwwsCOmYlJxGE2ot4f7ZM4uw:1kjLYJ:Z7DTWlR_NKBLuBOzXrhMa94Xzl6SOxU5VXTBkrnps4c	2020-12-13 21:11:39.369+09
+z5xdgth0qeuoqisunvfk303fum8y6fys	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1koQ3j:a8GQ4Y9GFXea79bDnsUr1I6IJiyl8blPUHy4myFrfVw	2020-12-27 21:01:03.467+09
+zo1ze1eut0hiezblr0p5pl1enbt86trw	.eJxVjEEOwiAQRe_C2hAGihSX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERIE6_W8T0yHUHdMd6azK1ui5zlLsiD9rl1Cg_r4f7d1Cwl29tklLaWrbJaQucNEcYfeTRpKwh0-AAjIvo2A6A54E8a0usMnoiJCXeH91yOFQ:1kn0zK:vGpoUt3y0EsG0j4_slZlXELcnXueYJ-vCbMBXwaTbw4	2020-12-24 00:02:42.853+09
+\.
+
+
+--
+-- Data for Name: recommend_recommend; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.recommend_recommend (id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20) FROM stdin;
+3	3	2	4	5	5	5	3	3	3	5	3	3	3	5	3	3	3	3	5	4
+4	3	\N	\N	\N	\N	3	\N	\N	\N	5	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5	\N	\N	5	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+6	\N	\N	5	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	\N	\N	\N
+7	\N	\N	5	\N	\N	\N	\N	\N	\N	5	\N	\N	\N	5	\N	\N	\N	\N	\N	\N
+8	\N	\N	5	\N	\N	\N	\N	\N	\N	5	\N	\N	2	5	\N	\N	\N	3	\N	3
+9	3	\N	5	\N	\N	\N	\N	\N	\N	5	\N	\N	2	5	\N	\N	\N	3	\N	3
+10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+11	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	3	3	\N	\N	\N	\N	3
+12	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.taggit_tag (id, name, slug) FROM stdin;
+1	딸기	
+2	스타벅스	_1
+3	해리포터	_2
+4	test	test
+5	테스트	_3
+6	d	d
+7	프라푸치노	_4
+8	ㅇ	_5
+9	ㅇㅇ	_6
+10	ㅁㄴㅇㄻ	_7
+11	asd	asd
+12	zzz	zzz
+13	h	h
+14	s	s
+15	ㄴ	_8
+16	초코	_9
+17	ㅁ	_10
+18	b	b
+19	tt	tt
+20	a	a
+21	aa	aa
+22	dd	dd
+23	j	j
+24	k	k
+25	i	i
+26	공차	_11
+27	이디야	_12
+28	f	f
+29	녹차	_13
+30	슈렉	_14
+31	붕어싸만코	_15
+32	밀크티	_16
+33	타로밀크티	_17
+34	초콜렛밀크티	_18
+35	제주그린티스무디	_19
+36	페레로로쉐프라푸치노	_20
+37	블랙와플칩크림프라푸치노	_21
+38	신메뉴	_22
+39	자바칩	_23
+40	페레로로쉐	_24
+41	블랙밀크티	_25
+42	딸기쥬얼리밀크티	_26
+43	고구마라떼	_27
+44	플랫치노	_28
+45	돼지바	_29
+46	쉐이크	_30
+47	스무디	_31
+48	망고	_32
+49	망고스무디	_33
+50	망고요구르트	_34
+51	요구르트	_35
+52	우롱밀크티	_36
+53	슈렉플랫치노	_37
+54	녹차플랫치노	_38
+55	네스퀵플랫치노	_39
+56	네스퀵	_40
+57	토샷추	_41
+58	토피넛라떼	_42
+59	라떼	_43
+60	녹차라떼	_44
+61	아이스티	_45
+62	샷추가	_46
+63	아샷추	_47
+64	초콜릿크림칩프라푸치노	_48
+65	말차크림프라푸치노	_49
+66	말차	_50
+67	카라멜	_51
+68	카라멜프라푸치노	_52
+69	트윅스프라푸치노	_53
+70	아메리카노	_54
+71	카페라떼	_55
+72	쿠앤크	_56
+73	오레오	_57
+74	오레오프라푸치노	_58
+75	쿠앤크프라푸치노	_59
+76	초코쿠앤크스무디	_60
+77	골드키위주스	_61
+78	키위	_62
+\.
+
+
+--
+-- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
+39	31	8	16
+40	31	8	2
+69	3	7	2
+72	5	7	16
+77	6	7	27
+84	9	7	26
+85	10	7	32
+86	10	7	26
+87	10	7	34
+88	11	7	26
+89	11	7	35
+90	11	7	29
+91	58	8	16
+92	58	8	2
+93	58	8	36
+94	59	8	2
+95	59	8	37
+96	59	8	38
+97	1	8	2
+98	1	8	7
+99	1	8	40
+100	1	8	39
+101	1	8	16
+102	60	8	32
+103	60	8	41
+104	60	8	26
+105	61	8	32
+106	61	8	1
+107	61	8	26
+108	61	8	42
+109	62	8	27
+110	62	8	43
+111	3	7	16
+112	3	7	7
+113	2	7	2
+114	2	7	3
+115	2	7	7
+116	4	7	27
+117	4	7	44
+118	4	7	29
+119	4	7	30
+120	5	7	1
+121	5	7	27
+122	5	7	45
+123	1	7	16
+124	1	7	1
+125	1	7	2
+126	1	7	45
+127	6	7	46
+128	6	7	31
+129	7	7	32
+130	7	7	33
+131	7	7	26
+132	8	7	32
+133	8	7	16
+134	8	7	26
+135	9	7	29
+136	9	7	47
+137	12	7	48
+138	12	7	49
+139	12	7	26
+140	12	7	47
+141	13	7	48
+142	13	7	26
+143	13	7	51
+144	13	7	50
+145	14	7	32
+146	14	7	41
+147	14	7	26
+148	15	7	32
+149	15	7	26
+150	15	7	52
+156	17	7	44
+157	17	7	16
+158	17	7	55
+159	17	7	56
+160	17	7	27
+161	18	7	57
+162	18	7	58
+163	18	7	27
+164	19	7	27
+165	19	7	59
+166	19	7	60
+167	19	7	29
+168	18	7	59
+169	20	7	27
+170	20	7	61
+172	20	7	63
+173	21	7	16
+174	21	7	2
+175	21	7	64
+176	21	7	7
+177	22	7	65
+178	22	7	2
+179	22	7	66
+180	22	7	7
+181	23	7	2
+182	23	7	67
+183	23	7	68
+184	23	7	69
+185	23	7	16
+186	24	7	2
+187	24	7	70
+188	63	8	26
+189	63	8	29
+190	63	8	71
+191	64	8	2
+192	64	8	7
+193	64	8	72
+194	64	8	73
+195	64	8	74
+196	64	8	75
+197	65	8	72
+198	65	8	76
+199	65	8	47
+200	65	8	16
+201	65	8	26
+202	66	8	27
+203	66	8	77
+204	66	8	78
+\.
+
+
+--
+-- Name: aljoadmin_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljoadmin_comment_id_seq', 37, true);
+
+
+--
+-- Name: aljoadmin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljoadmin_id_seq', 24, true);
+
+
+--
+-- Name: aljoadmin_like_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljoadmin_like_users_id_seq', 40, true);
+
+
+--
+-- Name: aljouser_commentuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljouser_commentuser_id_seq', 44, true);
+
+
+--
+-- Name: aljouser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljouser_id_seq', 66, true);
+
+
+--
+-- Name: aljouser_like_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.aljouser_like_users_id_seq', 10, true);
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 60, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 10, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 126, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 15, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 79, true);
+
+
+--
+-- Name: recommend_recommend_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.recommend_recommend_id_seq', 12, true);
+
+
+--
+-- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.taggit_tag_id_seq', 78, true);
+
+
+--
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.taggit_taggeditem_id_seq', 204, true);
+
+
+--
+-- Name: aljoadmin_comment aljoadmin_comment_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_comment
+    ADD CONSTRAINT aljoadmin_comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljoadmin_like_users aljoadmin_like_users_aljoadmin_id_user_id_69faca2e_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_like_users
+    ADD CONSTRAINT aljoadmin_like_users_aljoadmin_id_user_id_69faca2e_uniq UNIQUE (aljoadmin_id, user_id);
+
+
+--
+-- Name: aljoadmin_like_users aljoadmin_like_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_like_users
+    ADD CONSTRAINT aljoadmin_like_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljoadmin aljoadmin_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin
+    ADD CONSTRAINT aljoadmin_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljoadmin aljoadmin_slug_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin
+    ADD CONSTRAINT aljoadmin_slug_key UNIQUE (slug);
+
+
+--
+-- Name: aljouser_commentuser aljouser_commentuser_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_commentuser
+    ADD CONSTRAINT aljouser_commentuser_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljouser_like_users aljouser_like_users_aljouser_id_user_id_32fcea08_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_like_users
+    ADD CONSTRAINT aljouser_like_users_aljouser_id_user_id_32fcea08_uniq UNIQUE (aljouser_id, user_id);
+
+
+--
+-- Name: aljouser_like_users aljouser_like_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_like_users
+    ADD CONSTRAINT aljouser_like_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljouser aljouser_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser
+    ADD CONSTRAINT aljouser_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: recommend_recommend recommend_recommend_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.recommend_recommend
+    ADD CONSTRAINT recommend_recommend_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taggit_tag taggit_tag_name_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_tag
+    ADD CONSTRAINT taggit_tag_name_key UNIQUE (name);
+
+
+--
+-- Name: taggit_tag taggit_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_tag
+    ADD CONSTRAINT taggit_tag_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taggit_tag taggit_tag_slug_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_tag
+    ADD CONSTRAINT taggit_tag_slug_key UNIQUE (slug);
+
+
+--
+-- Name: taggit_taggeditem taggit_taggeditem_content_type_id_object_i_4bb97a8e_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_content_type_id_object_i_4bb97a8e_uniq UNIQUE (content_type_id, object_id, tag_id);
+
+
+--
+-- Name: taggit_taggeditem taggit_taggeditem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aljoadmin_comment_aljo_id_5dd16261; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_comment_aljo_id_5dd16261 ON public.aljoadmin_comment USING btree (aljo_id);
+
+
+--
+-- Name: aljoadmin_comment_owner_id_f7f562f5; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_comment_owner_id_f7f562f5 ON public.aljoadmin_comment USING btree (writer_id);
+
+
+--
+-- Name: aljoadmin_like_users_aljoadmin_id_3ba83e79; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_like_users_aljoadmin_id_3ba83e79 ON public.aljoadmin_like_users USING btree (aljoadmin_id);
+
+
+--
+-- Name: aljoadmin_like_users_user_id_47b8ac8f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_like_users_user_id_47b8ac8f ON public.aljoadmin_like_users USING btree (user_id);
+
+
+--
+-- Name: aljoadmin_owner_id_8fff6d5e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_owner_id_8fff6d5e ON public.aljoadmin USING btree (owner_id);
+
+
+--
+-- Name: aljoadmin_slug_2e8d8937_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljoadmin_slug_2e8d8937_like ON public.aljoadmin USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: aljouser_commentuser_aljo_id_94936d53; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljouser_commentuser_aljo_id_94936d53 ON public.aljouser_commentuser USING btree (aljo_id);
+
+
+--
+-- Name: aljouser_commentuser_writer_id_99dccb5a; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljouser_commentuser_writer_id_99dccb5a ON public.aljouser_commentuser USING btree (writer_id);
+
+
+--
+-- Name: aljouser_like_users_aljouser_id_e9e8bbe0; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljouser_like_users_aljouser_id_e9e8bbe0 ON public.aljouser_like_users USING btree (aljouser_id);
+
+
+--
+-- Name: aljouser_like_users_user_id_ee0a743f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX aljouser_like_users_user_id_ee0a743f ON public.aljouser_like_users USING btree (user_id);
+
+
+--
+-- Name: aljouser_ownerU_id_decba7b3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX "aljouser_ownerU_id_decba7b3" ON public.aljouser USING btree (owner_id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: taggit_tag_name_58eb2ed9_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_tag_name_58eb2ed9_like ON public.taggit_tag USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: taggit_tag_slug_6be58b2c_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_tag_slug_6be58b2c_like ON public.taggit_tag USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: taggit_taggeditem_content_type_id_9957a03c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_taggeditem_content_type_id_9957a03c ON public.taggit_taggeditem USING btree (content_type_id);
+
+
+--
+-- Name: taggit_taggeditem_content_type_id_object_id_196cc965_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_taggeditem_content_type_id_object_id_196cc965_idx ON public.taggit_taggeditem USING btree (content_type_id, object_id);
+
+
+--
+-- Name: taggit_taggeditem_object_id_e2d7d1df; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_taggeditem_object_id_e2d7d1df ON public.taggit_taggeditem USING btree (object_id);
+
+
+--
+-- Name: taggit_taggeditem_tag_id_f4f5b767; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX taggit_taggeditem_tag_id_f4f5b767 ON public.taggit_taggeditem USING btree (tag_id);
+
+
+--
+-- Name: aljoadmin_comment aljoadmin_comment_aljo_id_5dd16261_fk_aljoadmin_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_comment
+    ADD CONSTRAINT aljoadmin_comment_aljo_id_5dd16261_fk_aljoadmin_id FOREIGN KEY (aljo_id) REFERENCES public.aljoadmin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljoadmin_comment aljoadmin_comment_writer_id_f6aeb839_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_comment
+    ADD CONSTRAINT aljoadmin_comment_writer_id_f6aeb839_fk_auth_user_id FOREIGN KEY (writer_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljoadmin_like_users aljoadmin_like_users_aljoadmin_id_3ba83e79_fk_aljoadmin_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_like_users
+    ADD CONSTRAINT aljoadmin_like_users_aljoadmin_id_3ba83e79_fk_aljoadmin_id FOREIGN KEY (aljoadmin_id) REFERENCES public.aljoadmin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljoadmin_like_users aljoadmin_like_users_user_id_47b8ac8f_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin_like_users
+    ADD CONSTRAINT aljoadmin_like_users_user_id_47b8ac8f_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljoadmin aljoadmin_owner_id_8fff6d5e_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljoadmin
+    ADD CONSTRAINT aljoadmin_owner_id_8fff6d5e_fk_auth_user_id FOREIGN KEY (owner_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljouser_commentuser aljouser_commentuser_aljo_id_94936d53_fk_aljouser_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_commentuser
+    ADD CONSTRAINT aljouser_commentuser_aljo_id_94936d53_fk_aljouser_id FOREIGN KEY (aljo_id) REFERENCES public.aljouser(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljouser_commentuser aljouser_commentuser_writer_id_99dccb5a_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_commentuser
+    ADD CONSTRAINT aljouser_commentuser_writer_id_99dccb5a_fk_auth_user_id FOREIGN KEY (writer_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljouser_like_users aljouser_like_users_aljouser_id_e9e8bbe0_fk_aljouser_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_like_users
+    ADD CONSTRAINT aljouser_like_users_aljouser_id_e9e8bbe0_fk_aljouser_id FOREIGN KEY (aljouser_id) REFERENCES public.aljouser(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljouser_like_users aljouser_like_users_user_id_ee0a743f_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser_like_users
+    ADD CONSTRAINT aljouser_like_users_user_id_ee0a743f_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: aljouser aljouser_owner_id_94387d69_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aljouser
+    ADD CONSTRAINT aljouser_owner_id_94387d69_fk_auth_user_id FOREIGN KEY (owner_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: taggit_taggeditem taggit_taggeditem_content_type_id_9957a03c_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_content_type_id_9957a03c_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: taggit_taggeditem taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
