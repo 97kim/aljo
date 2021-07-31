@@ -9,7 +9,6 @@
     img{
         border-radius:30px;
         box-shadow: 0px 2px 7px 0.5px rgba(0, 0, 0, 0.7);
-        margin-bottom:10px;
     }
     .font{
         font-size:1.1rem;
@@ -52,93 +51,98 @@
                 </div><br>
                 <span class="board"> 베스트 조합</span><br>
 
-                {% for aljo in ediya.all %}
-                    <div class="listview">
-                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
-                        <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
-                        <span class="font">{{aljo.owner}}</span>
+          <div style="width:100%;">
+              {% for aljo in ediya.all %}
+              <div class="listview">
+                  <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                  <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
+                  <span class="font">{{aljo.owner}}</span>
 
-                        {% with aljo_like_users=aljo.like_users.all %}
-                            {% if aljo_like_users.count == 0 %}
-                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
-                            {% else %}
-                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
-                            {% endif %}
-                        {% endwith %}
+                  {% with aljo_like_users=aljo.like_users.all %}
+                  {% if aljo_like_users.count == 0 %}
+                  <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
+                  {% else %}
+                  <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
+                  {% endif %}
+                  {% endwith %}
+              </div>
+              {% endfor %}
+          </div>
 
-                    </div>
-                {% endfor %}
+          <div style="clear:left;">
+              <br><hr><br><span class="board"> 베스트 도전</span><br>
+          </div>
 
+          <div style="width:100%;">
+              {% for aljouser in ediyauser.all %}
+              <div class="listview">
+                  <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                  <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
+                  <span class="font">{{aljouser.owner}}</span>
 
-                <div style="clear:left;">
-                    <br><hr><br><span class="board"> 베스트 도전</span><br>
-                </div>
+                  {% with aljouser_like_users=aljouser.like_users.all %}
+                  {% if aljouser_like_users.count == 0 %}
+                  <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
+                  {% else %}
+                  <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
+                  {% endif %}
+                  {% endwith %}
+              </div>
+              {% endfor %}
+          </div>
 
-                {% for aljouser in ediyauser.all %}
-                    <div class="listview">
-                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
-                       <span class="font">{{aljouser.owner}}</span>
+          {% elif ediya and not ediyauser %}
 
-                        {% with aljouser_like_users=aljouser.like_users.all %}
-                            {% if aljouser_like_users.count == 0 %}
-                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
-                            {% else %}
-                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
-                            {% endif %}
-                        {% endwith %}
+          <div><br><br>
+              <span style="font-size:30px; font-weight:bold;">스타벅스</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
+          </div><br>
+          <span class="board"> 관리자 게시판</span><br>
 
-                    </div>
-                {% endfor %}
+          <div style="width:100%;">
+              {% for aljo in ediya.all %}
+              <div style="margin:10px 1% 7% 2%; float:left; ">
+                  <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                  <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
+                  <span class="font">{{aljo.owner}}</span>
 
-            {% elif ediya and not ediyauser %}
+                  {% with aljo_like_users=aljo.like_users.all %}
+                  {% if aljo_like_users.count == 0 %}
+                  <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
+                  {% else %}
+                  <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
+                  {% endif %}
+                  {% endwith %}
 
-                <div><br><br>
-                    <span style="font-size:30px; font-weight:bold;">이디야</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
-                </div><br>
-                <span class="board"> 관리자 게시판</span><br>
+              </div>
+              {% endfor %}
+          </div>
 
-                {% for aljo in ediya.all %}
-                    <div class="listview">
-                        <a href='{{ aljo.get_absolute_url }}'><img src="{{aljo.image_thumbnail.url}}"></a><br>
-                        <h4 style="text-align:center;"><a href='{{ aljo.get_absolute_url }}'>{{ aljo }}</a></h4>
-                        <span class="font">{{aljo.owner}}</span>
+          {% elif ediyauser and not ediya %}
 
-                        {% with aljo_like_users=aljo.like_users.all %}
-                            {% if aljo_like_users.count == 0 %}
-                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljo_like_users.count }}개</span><br>
-                            {% else %}
-                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljo_like_users.count }}개</span><br>
-                            {% endif %}
-                        {% endwith %}
+          <div>
+              <span style="font-size:30px; font-weight:bold;">스타벅스</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
+          </div><br>
+          <span class="board"> 사용자 게시판</span><br>
 
-                    </div>
-                {% endfor %}
+          <div style="width:100%;">
+              {% for aljouser in ediyauser.all %}
+              <div style="margin:10px 1% 7% 2%; float:left; ">
+                  <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}" width="100%" height="100%"></a><br><br>
+                  <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
+                  <span class="font">{{aljouser.owner}}</span>
 
-            {% elif ediyauser and not ediya %}
+                  {% with aljouser_like_users=aljouser.like_users.all %}
+                  {% if aljouser_like_users.count == 0 %}
+                  <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
+                  {% else %}
+                  <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
+                  {% endif %}
+                  {% endwith %}
 
-                <div>
-                    <span style="font-size:30px; font-weight:bold;">이디야</span><span style="color:gray; font-size:25px;">&nbsp;&nbsp;브랜드</span>
-                </div><br>
-                <span class="board"> 사용자 게시판</span><br>
+              </div>
+              {% endfor %}
+          </div>
 
-                {% for aljouser in ediyauser.all %}
-                    <div class="listview">
-                        <a href='{{ aljouser.get_absolute_url }}'><img src="{{aljouser.image_thumbnail.url}}"></a><br>
-                        <h4 style="text-align:center;"><a href='{{ aljouser.get_absolute_url }}'>{{ aljouser }}</a></h4>
-                        <span class="font">{{aljouser.owner}}</span>
-
-                        {% with aljouser_like_users=aljouser.like_users.all %}
-                            {% if aljouser_like_users.count == 0 %}
-                                <span class="font like"><i class="far fa-heart fa-lg animated delay-1s" style="color: gray;"></i> {{ aljouser_like_users.count }}개</span><br>
-                            {% else %}
-                                <span class="font like"><i class="fas fa-heart fa-lg animated delay-1s" style="color: red;"></i> {{ aljouser_like_users.count }}개</span><br>
-                            {% endif %}
-                        {% endwith %}
-
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+          {% endif %}
       </section>
 {% endblock %}
