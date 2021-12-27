@@ -1,5 +1,9 @@
 # Default ignored files
 /shelf/
-/.idea/workspace.xml
+.idea/
 
-#mysite/settings.py
+mysite/settings.py
+erd.dot
+dump.json
+staticfiles/
+.DS_Store
