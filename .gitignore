@@ -7,3 +7,5 @@ erd.dot
 dump.json
 staticfiles/
 .DS_Store
+runtime.txt
+db.dump
